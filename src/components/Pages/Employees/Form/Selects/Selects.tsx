@@ -1,9 +1,9 @@
 import React from 'react';
 import {Space} from 'antd';
 import CustomSelect from './CustomSelect';
-import {gender, position, stack} from '../../utils/selectOptionsConsts'
-import {useAppDispatch, useAppSelector} from '../../hooks/redux';
-import {filterFormContentSlice} from '../../store/reducers/FilterFormContentSlice';
+import {gender, position, stack} from '../../../../../utils/selectOptionsConsts'
+import {useAppDispatch, useAppSelector} from '../../../../../hooks/redux';
+import {filterFormContentSlice} from '../../../../../store/reducers/FilterFormContentSlice';
 
 const Selects = () => {
     const dispatch = useAppDispatch();
@@ -26,20 +26,20 @@ const Selects = () => {
         <Space>
             <CustomSelect
                 value={filterFormContent.position}
-                width={146}
+                width={240}
                 placeholder='Должность'
                 onChange={onPositionChangeHandler}
                 options={position}/>
             <CustomSelect
                 value={filterFormContent.gender}
-                width={105}
+                width={130}
                 placeholder='Пол'
                 onChange={onGenderChangeHandler}
                 options={gender}/>
             <CustomSelect
                 value={filterFormContent.stack}
-                width={145}
-                placeholder='Стек технологий'
+                width={120}
+                placeholder='Стек'
                 onChange={onStackChangeHandler}
                 options={stack}/>
         </Space>

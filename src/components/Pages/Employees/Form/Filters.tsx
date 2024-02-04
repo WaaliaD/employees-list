@@ -1,14 +1,14 @@
 import React from 'react';
 import ChosenFilters from './ChosenFilters';
 import styled from 'styled-components';
-import {useAppDispatch, useAppSelector} from '../hooks/redux';
-import {fetchEmployees} from '../store/reducers/ActionCreators';
-import {filterFormContentSlice} from '../store/reducers/FilterFormContentSlice';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {fetchEmployees} from '../../../../store/reducers/ActionCreators';
+import {filterFormContentSlice} from '../../../../store/reducers/FilterFormContentSlice';
 
-const StyledFilters = styled.div`
+const StyledFilters = styled.div<{second: string}>`
     display: flex;
     justify-content: center;
-    background-color: #F2F2F2;
+    background-color: ${props => props.second};
 `
 
 const StyledFiltersContainer = styled.div`
@@ -38,6 +38,7 @@ const StyledButton = styled.button`
 
 const Filters = () => {
     const dispatch = useAppDispatch();
+    const {second} = useAppSelector(state => state.themeReducer)
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
     const {setPage} = filterFormContentSlice.actions
 
@@ -53,18 +54,18 @@ const Filters = () => {
     }
 
     return (
-        <StyledFilters>
+        <StyledFilters second={second}>
             <StyledFiltersContainer>
-                <StyledFiltersContent>
+                <StyledFiltersContent style={{overflow: 'hidden'}}>
                     <span style={{marginRight: 40}}>Выбранные фильтры:</span>
                     {filterFormContent.gender?.map(item =>
-                        <ChosenFilters>{item}</ChosenFilters>
+                        <ChosenFilters key={item}>{item}</ChosenFilters>
                     )}
                     {filterFormContent.stack?.map(item =>
-                        <ChosenFilters>{item}</ChosenFilters>
+                        <ChosenFilters key={item}>{item}</ChosenFilters>
                     )}
                     {filterFormContent.position?.map(item =>
-                        <ChosenFilters>{item}</ChosenFilters>
+                        <ChosenFilters key={item}>{item}</ChosenFilters>
                     )}
                 </StyledFiltersContent>
                 <StyledButton onClick={handleSubmit}>Найти</StyledButton>

@@ -1,12 +1,20 @@
 import React, {useEffect} from 'react';
-import Header from './Header';
-import Form from './Form';
-import {useAppDispatch, useAppSelector} from '../hooks/redux';
+import Header from '../../Header';
+import Form from './Form/Form';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {useInView} from 'react-intersection-observer';
-import {fetchEmployees} from '../store/reducers/ActionCreators';
-import Breadcrumbs from './Breadcrumbs';
-import Filters from './Filters'
-import {filterFormContentSlice} from '../store/reducers/FilterFormContentSlice';
+import {fetchEmployees} from '../../../store/reducers/ActionCreators';
+import Breadcrumbs from '../../Breadcrumbs';
+import Filters from './Form/Filters'
+import Table from './Tabel/Table'
+import {filterFormContentSlice} from '../../../store/reducers/FilterFormContentSlice';
+import styled from 'styled-components';
+
+const Container = styled.div<{tc: string, bc: string}>`
+    color: ${props => props.tc};
+    background-color: ${props => props.bc};
+    min-height: 100vh;
+`
 
 const Employees = () => {
     const {employees} = useAppSelector(state => state.employeesReducer);
@@ -14,6 +22,7 @@ const Employees = () => {
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
     const dispatch = useAppDispatch();
     const {setPage} = filterFormContentSlice.actions
+    const {background, textColor} = useAppSelector(state => state.themeReducer)
 
     useEffect(() => {
         if(inView) {
@@ -30,19 +39,14 @@ const Employees = () => {
     }, [inView]);
 
     return (
-        <>
+        <Container bc={background} tc={textColor}>
             <Header/>
             <Breadcrumbs/>
             <Form/>
             <Filters/>
-            {employees.length
-                ?
-                employees.map(item => <h2 key={item.id}>{item.name}</h2>)
-                :
-                <h2>Таких не найденно</h2>}
-            <h1>{filterFormContent.page}</h1>
-            <div ref={ref} style={{backgroundColor: 'red', height: 10}}></div>
-        </>
+            <Table/>
+            <div ref={ref} style={{height: 10}}></div>
+        </Container>
     );
 };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Input} from 'antd';
-import {useAppDispatch, useAppSelector} from '../hooks/redux';
-import {filterFormContentSlice} from '../store/reducers/FilterFormContentSlice';
-import Selects from './Select/Selects'
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {filterFormContentSlice} from '../../../../store/reducers/FilterFormContentSlice';
+import Selects from './Selects/Selects'
 
 const StyledForm = styled.div`
     display: flex;

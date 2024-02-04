@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import image from "../images/logo.png";
 import {Switch} from 'antd';
-
-const onChange = (checked: boolean) => {
-
-};
+import {useAppDispatch, useAppSelector} from '../hooks/redux';
+import {themeSlice} from '../store/reducers/ThemeSlice';
 
 const StyledHeader = styled.div`
     display: flex;
@@ -32,6 +30,10 @@ const StyledSpan = styled.span`
 
 
 const Header = () => {
+    const {dark} = useAppSelector(state => state.themeReducer)
+    const dispatch = useAppDispatch();
+    const {turnLightTheme, turnDarkTheme} = themeSlice.actions;
+
     return (
         <StyledHeader>
             <Services>
@@ -40,7 +42,15 @@ const Header = () => {
                     <StyledSpan>+7 343 290 84 76</StyledSpan>
                     <StyledSpan>info@66bit.ru</StyledSpan>
                 </ServicesInfo>
-                <Switch onChange={onChange}/>
+                <Switch value={dark} onChange={
+                    (checked) => {
+                        if (checked) {
+                            dispatch(turnDarkTheme())
+                        } else {
+                            dispatch(turnLightTheme())
+                        }
+                    }
+                }/>
             </Services>
         </StyledHeader>
 
