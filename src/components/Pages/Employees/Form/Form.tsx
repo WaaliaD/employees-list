@@ -8,6 +8,7 @@ import Selects from './Selects/Selects'
 const StyledForm = styled.div`
     display: flex;
     justify-content: center;
+    padding: 0 24px;
 `
 
 const StyledFormContainer = styled.div`
@@ -22,16 +23,17 @@ const StyledFormContent = styled.div`
     justify-content: space-between;
 `
 
-const StyledH1 = styled.h1`
-    margin-bottom: 28px;
+const StyledH1 = styled.h1<{big: boolean}>`
+    margin-bottom: ${props => props.big ? '28px' : '16px'};
     margin-top: 16px;
     margin-right: inherit;
 `
 
 const Form = () => {
-    const dispatch = useAppDispatch();
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
-    const {nameChanged} = filterFormContentSlice.actions
+    const {big} = useAppSelector(state => state.windowSizeReducer);
+    const {nameChanged} = filterFormContentSlice.actions;
+    const dispatch = useAppDispatch();
 
     const handleChange = (value: string) => {
         dispatch(nameChanged(value));
@@ -40,15 +42,29 @@ const Form = () => {
     return (
         <StyledForm>
             <StyledFormContainer>
-                <StyledFormContent>
-                    <StyledH1>Список сотрудников</StyledH1>
-                    <Selects/>
-                </StyledFormContent>
-                <Input
-                    placeholder="Поиск"
-                    style={{marginBottom: 28}}
-                    value={filterFormContent.name}
-                    onChange={(event) => handleChange(event.target.value)}/>
+                {big ?
+                    <>
+                        <StyledFormContent>
+                            <StyledH1 big={big}>Список сотрудников</StyledH1>
+                            <Selects />
+                        </StyledFormContent>
+                        <Input
+                            placeholder="Поиск"
+                            style={{marginBottom: 28}}
+                            value={filterFormContent.name}
+                            onChange={(event) => handleChange(event.target.value)}/>
+                    </>
+                    :
+                    <>
+                        <StyledH1 big={big}>Список сотрудников</StyledH1>
+                        <Input
+                            placeholder="Поиск"
+                            style={{marginBottom: 12}}
+                            value={filterFormContent.name}
+                            onChange={(event) => handleChange(event.target.value)}/>
+                        <Selects/>
+                    </>
+                }
             </StyledFormContainer>
         </StyledForm>
     );

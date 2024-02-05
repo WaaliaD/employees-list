@@ -16,7 +16,7 @@ const CustomSelect: FC<CustomSelectProps> = ({value, width, placeholder, onChang
             maxTagCount={0}
             mode='multiple'
             allowClear
-            style={{width: `${width}px`}}
+            style={{width: `${width}%`}}
             placeholder={placeholder}
             onChange={value => onChange(value)}
             options={options}

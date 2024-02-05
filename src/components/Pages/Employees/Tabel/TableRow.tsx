@@ -3,13 +3,19 @@ import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
 import {useAppSelector} from '../../../../hooks/redux';
 
-const StyledTableRow = styled.div<{second: string}>`
+const StyledTableRow = styled.div<{second: string, big: boolean}>`
     display: grid;
-    grid-template-columns:
-        minmax(150px, 4fr)
+    grid-template-columns: ${(props) =>
+    props.big
+    ?
+       `minmax(150px, 4fr)
         minmax(150px, 3fr)
         minmax(150px, 2fr)
-        minmax(150px, 1fr);
+        minmax(150px, 1fr)`
+    :
+       `minmax(100px, 4fr)
+        minmax(100px, 2fr)`
+    };
     padding: 28px 0;
     border-bottom: #F2F2F2 1px solid;
     &:hover {
@@ -47,16 +53,19 @@ interface TableRowProps {
 }
 
 const TableRow: FC<TableRowProps> = ({name, phone, position, birthdate, id}) => {
-    const {second} = useAppSelector(state => state.themeReducer)
+    const {big} = useAppSelector(state => state.windowSizeReducer);
+    const {second} = useAppSelector(state => state.themeReducer);
+
     const router = useNavigate();
     const birth = birthdate.split(' ');
     const date = birth[0] + '.' + monthToNumbers.get(birth[1]) + '.' + birth[2]
+
     return (
-        <StyledTableRow onClick={() => router(`/employees/${id}`)} second={second}>
+        <StyledTableRow onClick={() => router(`/employees/${id}`)} second={second} big={big}>
             <StyledTableCell>{name}</StyledTableCell>
             <StyledTableCell>{position}</StyledTableCell>
-            <StyledTableCell>{phone}</StyledTableCell>
-            <StyledTableCell style={{marginRight: 50}}>{date}</StyledTableCell>
+            {big && <StyledTableCell>{phone}</StyledTableCell>}
+            {big && <StyledTableCell style={{marginRight: 50}}>{date}</StyledTableCell>}
         </StyledTableRow>
     );
 };

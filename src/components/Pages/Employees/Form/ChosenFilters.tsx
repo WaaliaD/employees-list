@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {filterFormContentSlice} from '../../../../store/reducers/FilterFormContentSlice';
 
-const StyledSkills = styled.div<{background: string}>`
+const StyledSkills = styled.div<{background: string, big: boolean}>`
     height: 25px;
     padding: 10px;
     background-color: ${props => props.background};
@@ -12,6 +12,7 @@ const StyledSkills = styled.div<{background: string}>`
     justify-content: space-between;
     align-items: center;
     margin-right: 24px;
+    margin-top: ${props => props.big ? 0 : '12px'};
 `
 
 interface SkillsProps {
@@ -19,10 +20,11 @@ interface SkillsProps {
 }
 
 const ChosenFilters: FC<SkillsProps> = ({children}) => {
-    const {background, textColor} = useAppSelector(state => state.themeReducer)
+    const {background, textColor} = useAppSelector(state => state.themeReducer);
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
+    const {big} = useAppSelector(state => state.windowSizeReducer);
+    const {stackChanged, positionChanged, genderChanged} = filterFormContentSlice.actions;
     const dispatch = useAppDispatch();
-    const {stackChanged, positionChanged, genderChanged} = filterFormContentSlice.actions
 
     function cancelSelection(children: string) {
         const filteredStack = filterFormContent.stack?.filter(item => item !== children);
@@ -34,7 +36,7 @@ const ChosenFilters: FC<SkillsProps> = ({children}) => {
     }
 
     return (
-        <StyledSkills onClick={() => cancelSelection(children)} background={background}>
+        <StyledSkills onClick={() => cancelSelection(children)} background={background} big={big}>
             <svg style={{marginRight: 10}} width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.67824 5.49992L9.85953 1.3187C10.0468 1.1314 10.0468 0.827767 9.85953 0.640471C9.67223
                 0.453176 9.36859 0.453176 9.18129 0.640471L5 4.82169L0.818711 0.641111C0.631412 0.453815 0.327772

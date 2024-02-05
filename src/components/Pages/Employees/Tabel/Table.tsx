@@ -6,6 +6,7 @@ import {useAppSelector} from '../../../../hooks/redux';
 const TableContainer = styled.div`
     display: flex;
     justify-content: center;
+    padding: 0 24px;
 `
 
 const StyledTable = styled.div`
@@ -14,13 +15,19 @@ const StyledTable = styled.div`
     flex-direction: column;
 `
 
-const TableHead = styled.div`
+const TableHead = styled.div<{big: boolean}>`
     display: grid;
-    grid-template-columns:
-        minmax(150px, 4fr)
+    grid-template-columns: ${(props) => 
+    props.big
+    ?
+        `minmax(150px, 4fr)
         minmax(150px, 3fr)
         minmax(150px, 2fr)
-        minmax(150px, 1fr);
+        minmax(150px, 1fr)`
+    :
+        `minmax(100px, 4fr)
+        minmax(100px, 2fr)`
+    };
     padding: 32px 12px 28px 12px;
 `
 
@@ -35,15 +42,16 @@ const StyledTh = styled.div`
 
 const Table = () => {
     const {employees} = useAppSelector(state => state.employeesReducer);
+    const {big} = useAppSelector(state => state.windowSizeReducer);
 
     return (
         <TableContainer>
             <StyledTable>
-                <TableHead>
+                <TableHead big={big}>
                     <StyledTh>ФИО</StyledTh>
                     <StyledTh>Должность</StyledTh>
-                    <StyledTh>Телефон</StyledTh>
-                    <StyledTh>Дата рождения</StyledTh>
+                    {big && <StyledTh>Телефон</StyledTh>}
+                    {big && <StyledTh>Дата рождения</StyledTh>}
                 </TableHead>
                 {employees.length
                     ?

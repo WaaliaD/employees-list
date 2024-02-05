@@ -9,6 +9,7 @@ const StyledHeader = styled.div`
     display: flex;
     justify-content: center;
     box-shadow: 0 4px 8px 0 #3971A440;
+    padding: 0 24px;
 `
 
 const Services = styled.div`
@@ -28,21 +29,25 @@ const StyledSpan = styled.span`
     margin-right: 48px;
 `
 
-
 const Header = () => {
     const {dark} = useAppSelector(state => state.themeReducer)
-    const dispatch = useAppDispatch();
+    const {big} = useAppSelector(state => state.windowSizeReducer);
     const {turnLightTheme, turnDarkTheme} = themeSlice.actions;
+    const dispatch = useAppDispatch();
 
     return (
         <StyledHeader>
             <Services>
                 <img src={image} alt="logo"/>
-                <ServicesInfo>
-                    <StyledSpan>+7 343 290 84 76</StyledSpan>
-                    <StyledSpan>info@66bit.ru</StyledSpan>
-                </ServicesInfo>
-                <Switch value={dark} onChange={
+                {big &&
+                    <ServicesInfo>
+                        <StyledSpan>+7 343 290 84 76</StyledSpan>
+                        <StyledSpan>info@66bit.ru</StyledSpan>
+                    </ServicesInfo>
+                }
+                <Switch
+                    value={dark}
+                    onChange={
                     (checked) => {
                         if (checked) {
                             dispatch(turnDarkTheme())

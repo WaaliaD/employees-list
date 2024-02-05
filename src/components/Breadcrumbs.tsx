@@ -8,6 +8,7 @@ import {fetchEmployeeById} from '../store/reducers/ActionCreators';
 const StyledBreadcrumbs = styled.div`
     display: flex;
     justify-content: center;
+    padding: 0 24px;
 `
 
 const BreadcrumbsContent = styled.div`
@@ -16,10 +17,12 @@ const BreadcrumbsContent = styled.div`
     padding: 28px 0;
     width: 1560px;
     color: #B0B0B0;
+    text-overflow: ellipsis;
 `
 
 const Breadcrumbs = () => {
     const {employee} = useAppSelector(state => state.employeeByIdReducer);
+
     const dispatch = useAppDispatch();
     const router = useNavigate();
     const params = useParams();

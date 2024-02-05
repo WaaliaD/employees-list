@@ -8,21 +8,14 @@ import Breadcrumbs from '../../Breadcrumbs';
 import Filters from './Form/Filters'
 import Table from './Tabel/Table'
 import {filterFormContentSlice} from '../../../store/reducers/FilterFormContentSlice';
-import styled from 'styled-components';
-
-const Container = styled.div<{tc: string, bc: string}>`
-    color: ${props => props.tc};
-    background-color: ${props => props.bc};
-    min-height: 100vh;
-`
 
 const Employees = () => {
     const {employees} = useAppSelector(state => state.employeesReducer);
-    const {ref, inView} = useInView();
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
+    const {setPage} = filterFormContentSlice.actions;
+
+    const {ref, inView} = useInView();
     const dispatch = useAppDispatch();
-    const {setPage} = filterFormContentSlice.actions
-    const {background, textColor} = useAppSelector(state => state.themeReducer)
 
     useEffect(() => {
         if(inView) {
@@ -39,14 +32,14 @@ const Employees = () => {
     }, [inView]);
 
     return (
-        <Container bc={background} tc={textColor}>
+        <>
             <Header/>
             <Breadcrumbs/>
             <Form/>
             <Filters/>
             <Table/>
             <div ref={ref} style={{height: 10}}></div>
-        </Container>
+        </>
     );
 };
 
