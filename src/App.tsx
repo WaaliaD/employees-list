@@ -54,7 +54,7 @@ export default function App() {
                     fontSize: fontSize,
                     fontFamily: 'Roboto',
                 }}>
-                <BrowserRouter>
+                <BrowserRouter basename='/test-task-66bit-v2'>
                     <AppRouter/>
                 </BrowserRouter>
             </Wrapper>
