@@ -1,5 +1,3 @@
-import type {SelectProps} from 'antd';
-
 export const position = [
     {
         label: 'Backend-разработчик',

@@ -18,7 +18,8 @@ const StyledFiltersContainer = styled.div<{ big: boolean }>`
     justify-content: space-between;
     flex-direction: ${props => props.big ? 'row' : 'column'};
     width: 1560px;
-    padding: 13px 0;
+    padding: ${props => props.big ? '0' : '16px 0'};
+    height: ${props => props.big ? '71px' : 'auto'};
 `
 
 const StyledFiltersContent = styled.div`
@@ -32,10 +33,9 @@ const StyledFiltersContent = styled.div`
 const StyledButton = styled.button<{ big: boolean }>`
     width: ${props => props.big ? '146px' : '100%'};
     padding: ${props => props.big ? '12px 48px 12px 48px' : '6px 0'};
-    border-radius: 8px;
-    gap: 10px;
+    border-radius: ${props => props.big ? '8px' : '4px'};
+    border:none;
     color: white;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     background: #155DA4;
     font-weight: 600;
 `
@@ -81,7 +81,6 @@ const Filters = () => {
                                 <ChosenFilters key={item}>{item}</ChosenFilters>
                             )}
                         </StyledFiltersContent>
-                        <StyledButton big={big} onClick={handleSubmit}>Найти</StyledButton>
                     </>
                     :
                     <>
@@ -97,11 +96,9 @@ const Filters = () => {
                                 <ChosenFilters key={item}>{item}</ChosenFilters>
                             )}
                         </StyledFiltersContent>
-
-                        <StyledButton big={big} onClick={handleSubmit}>Найти</StyledButton>
                     </>
                 }
-
+                <StyledButton big={big} onClick={handleSubmit}>Найти</StyledButton>
             </StyledFiltersContainer>
         </StyledFilters>
     );

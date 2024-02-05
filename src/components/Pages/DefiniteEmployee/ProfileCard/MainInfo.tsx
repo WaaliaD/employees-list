@@ -1,6 +1,7 @@
 import React from 'react';
 import {useAppSelector} from '../../../../hooks/redux';
 import styled from 'styled-components';
+import {monthToNumbers} from '../../../../utils/monthToNumbers';
 
 const Container = styled.div<{big: boolean}>`
     display: flex;
@@ -28,21 +29,6 @@ const Info = styled.span<{big: boolean}>`
     font-size: ${props => props.big ? '24px' : '14px'};
     margin-top: ${props => props.big ? '24px' : '12px'};
 `
-
-const monthToNumbers = new Map([
-    ['января', '01'],
-    ['февраля', '02'],
-    ['марта', '03'],
-    ['апреля', '04'],
-    ['мая', '05'],
-    ['июня', '06'],
-    ['июля', '07'],
-    ['августа', '08'],
-    ['сентября', '09'],
-    ['октября', '10'],
-    ['ноября', '11'],
-    ['декабря', '12']
-])
 
 const MainInfo = () => {
     const {big} = useAppSelector(state => state.windowSizeReducer)

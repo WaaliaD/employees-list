@@ -11,7 +11,7 @@ const StyledSkills = styled.div<{background: string, big: boolean}>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-right: 24px;
+    margin-right: ${props => props.big ? '24px' : '16px'};
     margin-top: ${props => props.big ? 0 : '12px'};
 `
 
@@ -37,7 +37,7 @@ const ChosenFilters: FC<SkillsProps> = ({children}) => {
 
     return (
         <StyledSkills onClick={() => cancelSelection(children)} background={background} big={big}>
-            <svg style={{marginRight: 10}} width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg style={{marginRight: 10}} width="10" height="10" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.67824 5.49992L9.85953 1.3187C10.0468 1.1314 10.0468 0.827767 9.85953 0.640471C9.67223
                 0.453176 9.36859 0.453176 9.18129 0.640471L5 4.82169L0.818711 0.641111C0.631412 0.453815 0.327772
                 0.453815 0.140474 0.641111C-0.0468245 0.828406 -0.0468245 1.13204 0.140474 1.31934L4.32176

@@ -12,12 +12,12 @@ const StyledHeader = styled.div`
     padding: 0 24px;
 `
 
-const Services = styled.div`
+const Services = styled.div<{big: boolean}>`
     width: 1560px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 90px;
+    height: ${props => props.big ? '90px' : '54px'};
 `
 
 const ServicesInfo = styled.div`
@@ -27,6 +27,7 @@ const ServicesInfo = styled.div`
 const StyledSpan = styled.span`
     margin-left: 12px;
     margin-right: 48px;
+    font-size: 18px;
 `
 
 const Header = () => {
@@ -37,8 +38,13 @@ const Header = () => {
 
     return (
         <StyledHeader>
-            <Services>
-                <img src={image} alt="logo"/>
+            <Services big={big}>
+                <img
+                    width={big ? '101px' : '52px'}
+                    height={big ? '41px' : '22px'}
+                    src={image}
+                    alt="logo"
+                />
                 {big &&
                     <ServicesInfo>
                         <StyledSpan>+7 343 290 84 76</StyledSpan>

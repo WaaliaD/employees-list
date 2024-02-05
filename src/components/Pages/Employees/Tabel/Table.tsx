@@ -18,17 +18,22 @@ const StyledTable = styled.div`
 const TableHead = styled.div<{big: boolean}>`
     display: grid;
     grid-template-columns: ${(props) => 
-    props.big
-    ?
-        `minmax(150px, 4fr)
-        minmax(150px, 3fr)
-        minmax(150px, 2fr)
-        minmax(150px, 1fr)`
-    :
-        `minmax(100px, 4fr)
-        minmax(100px, 2fr)`
+        props.big
+            ?
+                `minmax(150px, 4fr)
+                minmax(150px, 3fr)
+                minmax(150px, 2fr)
+                minmax(150px, 1fr)`
+            :
+                `minmax(100px, 1fr)
+                minmax(100px, 1fr)
+                minmax(100px, 1fr)`
     };
-    padding: 32px 12px 28px 12px;
+    padding: ${(props) =>
+        props.big
+            ? '32px 12px 28px 12px'
+            : '24px 0 4px 0'
+    };
 `
 
 const StyledTh = styled.div`
@@ -50,7 +55,7 @@ const Table = () => {
                 <TableHead big={big}>
                     <StyledTh>ФИО</StyledTh>
                     <StyledTh>Должность</StyledTh>
-                    {big && <StyledTh>Телефон</StyledTh>}
+                    <StyledTh>Телефон</StyledTh>
                     {big && <StyledTh>Дата рождения</StyledTh>}
                 </TableHead>
                 {employees.length
