@@ -6,17 +6,18 @@ import {monthToNumbers} from '../../../../utils/monthToNumbers';
 
 const StyledTableRow = styled.div<{second: string, big: boolean}>`
     display: grid;
+    grid-column-gap: 15px;
     grid-template-columns: ${(props) =>
     props.big
     ?
-       `minmax(150px, 4fr)
+        `minmax(150px, 4fr)
         minmax(150px, 3fr)
         minmax(150px, 2fr)
         minmax(150px, 1fr)`
     :
-       `minmax(100px, 1fr)
-        minmax(100px, 1fr)
-        minmax(100px, 1fr)`
+        `minmax(80px, 1fr)
+        minmax(80px, 1fr)
+        minmax(80px, 0.7fr)`
     };
     padding: 28px 0;
     border-bottom: #F2F2F2 1px solid;

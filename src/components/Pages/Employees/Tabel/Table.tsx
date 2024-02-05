@@ -17,6 +17,7 @@ const StyledTable = styled.div`
 
 const TableHead = styled.div<{big: boolean}>`
     display: grid;
+    grid-column-gap: 15px;
     grid-template-columns: ${(props) => 
         props.big
             ?
@@ -25,9 +26,9 @@ const TableHead = styled.div<{big: boolean}>`
                 minmax(150px, 2fr)
                 minmax(150px, 1fr)`
             :
-                `minmax(100px, 1fr)
-                minmax(100px, 1fr)
-                minmax(100px, 1fr)`
+                `minmax(80px, 1fr)
+                minmax(80px, 1fr)
+                minmax(80px, 0.7fr)`
     };
     padding: ${(props) =>
         props.big

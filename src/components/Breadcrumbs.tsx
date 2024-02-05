@@ -77,7 +77,8 @@ const Breadcrumbs = () => {
                     >
                         {big
                             ? employee.name
-                            : employee.name.split(' ')[0]
+                            : employee.name &&
+                                employee.name.split(' ')[0]
                                 + ' '
                                 + employee.name.split(' ')[1][0]
                                 + '. '
