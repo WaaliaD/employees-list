@@ -24,6 +24,7 @@ const StyledFiltersContainer = styled.div<{ big: boolean }>`
 const StyledFiltersContent = styled.div`
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
     align-items: center;
     overflow: hidden;
 `

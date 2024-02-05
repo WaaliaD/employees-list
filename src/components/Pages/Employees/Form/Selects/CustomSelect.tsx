@@ -14,6 +14,7 @@ const CustomSelect: FC<CustomSelectProps> = ({value, width, placeholder, onChang
         <Select
             value={value}
             maxTagCount={0}
+            maxTagPlaceholder={omittedValues => <span>{omittedValues.length}</span>}
             mode='multiple'
             allowClear
             style={{width: `${width}%`}}
