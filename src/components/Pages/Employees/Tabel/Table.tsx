@@ -13,6 +13,7 @@ const StyledTable = styled.div`
     width: 1584px;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 `
 
 const TableHead = styled.div<{isDesktop: boolean}>`
@@ -28,7 +29,8 @@ const TableHead = styled.div<{isDesktop: boolean}>`
             :
                 `minmax(80px, 1fr)
                 minmax(80px, 1fr)
-                minmax(80px, 0.7fr)`
+                minmax(115px, 1fr)
+                minmax(80px, 1fr)`
     };
     padding: ${(props) =>
         props.isDesktop
@@ -57,7 +59,7 @@ const Table = () => {
                     <StyledTh>ФИО</StyledTh>
                     <StyledTh>Должность</StyledTh>
                     <StyledTh>Телефон</StyledTh>
-                    {isDesktop && <StyledTh>Дата рождения</StyledTh>}
+                    <StyledTh>Дата рождения</StyledTh>
                 </TableHead>
                 {employees.length
                     ?

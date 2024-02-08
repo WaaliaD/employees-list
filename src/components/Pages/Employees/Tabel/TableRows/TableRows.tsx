@@ -4,8 +4,16 @@ import styled from 'styled-components';
 import {useAppSelector} from 'hooks/redux';
 import {monthToNumbers} from 'utils/consts/monthToNumbers';
 
+const Line = styled.div`
+    background-color: #F2F2F2;
+    height: 1px;
+    min-width: 390px;
+    width: 100%;
+`
+
 const StyledTableRow = styled.div<{second: string, isDesktop: boolean}>`
     cursor: pointer;
+    width: 100%;
     display: grid;
     grid-column-gap: 15px;
     grid-template-columns: ${(props) =>
@@ -18,10 +26,10 @@ const StyledTableRow = styled.div<{second: string, isDesktop: boolean}>`
     :
         `minmax(80px, 1fr)
         minmax(80px, 1fr)
-        minmax(80px, 0.7fr)`
+        minmax(105px, 1fr)
+        minmax(80px, 1fr)`
     };
     padding: 28px 0;
-    border-bottom: #F2F2F2 1px solid;
     &:hover {
         background-color: ${props => props.second};
     }
@@ -49,12 +57,15 @@ const TableRows: FC<TableRowProps> = ({name, phone, position, birthdate, id}) =>
     const date = birth[0] + '.' + monthToNumbers.get(birth[1]) + '.' + birth[2]
 
     return (
-        <StyledTableRow onClick={() => router(`/employees/${id}`)} second={second} isDesktop={isDesktop}>
-            <StyledTableCell>{name}</StyledTableCell>
-            <StyledTableCell>{position}</StyledTableCell>
-            <StyledTableCell style={{whiteSpace: 'nowrap'}}>{phone}</StyledTableCell>
-            {isDesktop && <StyledTableCell>{date}</StyledTableCell>}
-        </StyledTableRow>
+        <>
+            <StyledTableRow onClick={() => router(`/employees/${id}`)} second={second} isDesktop={isDesktop}>
+                <StyledTableCell>{name}</StyledTableCell>
+                <StyledTableCell>{position}</StyledTableCell>
+                <StyledTableCell style={{whiteSpace: 'nowrap'}}>{phone}</StyledTableCell>
+                <StyledTableCell>{date}</StyledTableCell>
+            </StyledTableRow>
+            <Line></Line>
+        </>
     );
 };
 
