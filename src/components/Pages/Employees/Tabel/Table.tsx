@@ -15,11 +15,11 @@ const StyledTable = styled.div`
     flex-direction: column;
 `
 
-const TableHead = styled.div<{big: boolean}>`
+const TableHead = styled.div<{isDesktop: boolean}>`
     display: grid;
     grid-column-gap: 15px;
     grid-template-columns: ${(props) => 
-        props.big
+        props.isDesktop
             ?
                 `minmax(150px, 4fr)
                 minmax(150px, 3fr)
@@ -31,7 +31,7 @@ const TableHead = styled.div<{big: boolean}>`
                 minmax(80px, 0.7fr)`
     };
     padding: ${(props) =>
-        props.big
+        props.isDesktop
             ? '32px 12px 28px 12px'
             : '24px 0 4px 0'
     };
@@ -48,16 +48,16 @@ const StyledTh = styled.div`
 
 const Table = () => {
     const {employees} = useAppSelector(state => state.employeesReducer);
-    const {big} = useAppSelector(state => state.windowSizeReducer);
+    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
 
     return (
         <TableContainer>
             <StyledTable>
-                <TableHead big={big}>
+                <TableHead isDesktop={isDesktop}>
                     <StyledTh>ФИО</StyledTh>
                     <StyledTh>Должность</StyledTh>
                     <StyledTh>Телефон</StyledTh>
-                    {big && <StyledTh>Дата рождения</StyledTh>}
+                    {isDesktop && <StyledTh>Дата рождения</StyledTh>}
                 </TableHead>
                 {employees.length
                     ?

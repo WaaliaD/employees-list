@@ -1,56 +1,75 @@
 import React from 'react';
-import CustomSelect from './CustomSelect/CustomSelect';
 import {gender, position, stack} from 'utils/consts/selectOptions'
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {filterFormContentSlice} from 'store/reducers/FilterFormContentSlice';
 import styled from 'styled-components';
+import Select from 'components/UI/Select';
+import {selectsSlice} from 'store/reducers/SelectsSlice';
 
-const Container = styled.div<{big: boolean}>`
-    width: ${props => props.big ? '50%' : '100%'}; 
+const Container = styled.div<{isDesktop: boolean}>`
+    width: ${props => props.isDesktop ? '475px' : '100%'}; 
     display: flex; 
     align-items: center; 
     justify-content: space-between;
-    margin-bottom: ${props => props.big ? 0 : '16px'};
+    margin-bottom: ${props => props.isDesktop ? 0 : '16px'};
 `
 
 const Selects = () => {
+    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
-    const {big} = useAppSelector(state => state.windowSizeReducer);
-    const {stackChanged, positionChanged, genderChanged} = filterFormContentSlice.actions;
+    const {background, second} = useAppSelector(state => state.themeReducer);
+    const {isFirstOpen, isSecondOpen, isThirdOpen} = useAppSelector(state => state.selectsReducer);
+    const {positionChanged, genderChanged, stackChanged} = filterFormContentSlice.actions;
     const dispatch = useAppDispatch();
+    const {toggleThird, toggleSecond, toggleFirst} = selectsSlice.actions;
 
-    function onPositionChangeHandler(value: string[]) {
-        dispatch(positionChanged(value))
+    function positionDispatch(content: string[]) {
+        dispatch(positionChanged(content))
     }
 
-    function onGenderChangeHandler(value: string[]) {
-        dispatch(genderChanged(value))
+    function genderDispatch(content: string[]) {
+        dispatch(genderChanged(content))
     }
 
-    function onStackChangeHandler(value: string[]) {
-        dispatch(stackChanged(value))
+    function stackDispatch(content: string[]) {
+        dispatch(stackChanged(content))
     }
 
     return (
-        <Container big={big}>
-            <CustomSelect
-                value={filterFormContent.position}
-                width={45}
-                placeholder='Должность'
-                onChange={onPositionChangeHandler}
-                options={position}/>
-            <CustomSelect
-                value={filterFormContent.gender}
-                width={25}
-                placeholder='Пол'
-                onChange={onGenderChangeHandler}
-                options={gender}/>
-            <CustomSelect
-                value={filterFormContent.stack}
-                width={25}
-                placeholder='Стек'
-                onChange={onStackChangeHandler}
-                options={stack}/>
+        <Container isDesktop={isDesktop}>
+            <Select
+                isDesktop={isDesktop}
+                isOpen={isFirstOpen}
+                open={() => dispatch(toggleFirst())}
+                backgroundColor={background}
+                secondColor={second}
+                handler={positionDispatch}
+                options={position}
+                placeholder={'Должность'}
+                values={filterFormContent.position}
+            />
+            <Select
+                isDesktop={isDesktop}
+                isOpen={isSecondOpen}
+                open={() => dispatch(toggleSecond())}
+                backgroundColor={background}
+                secondColor={second}
+                handler={genderDispatch}
+                options={gender}
+                placeholder={'Пол'}
+                values={filterFormContent.gender}
+            />
+            <Select
+                isDesktop={isDesktop}
+                isOpen={isThirdOpen}
+                open={() => dispatch(toggleThird())}
+                backgroundColor={background}
+                secondColor={second}
+                handler={stackDispatch}
+                options={stack}
+                placeholder={'Стек технологий'}
+                values={filterFormContent.stack}
+            />
         </Container>
     );
 };

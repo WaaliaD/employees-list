@@ -3,35 +3,35 @@ import {useAppSelector} from 'hooks/redux';
 import styled from 'styled-components';
 import {monthToNumbers} from 'utils/consts/monthToNumbers';
 
-const Container = styled.div<{big: boolean}>`
+const Container = styled.div<{isDesktop: boolean}>`
     display: flex;
     flex-direction: column;
-    margin-top: ${props => props.big ? '80px' : '40px'};
+    margin-top: ${props => props.isDesktop ? '80px' : '40px'};
 `
 
-const MainInfoHeading = styled.h2<{big: boolean}>`
-    font-size: ${props => props.big ? '32px' : '16px'};
+const MainInfoHeading = styled.h2<{isDesktop: boolean}>`
+    font-size: ${props => props.isDesktop ? '32px' : '16px'};
     font-weight: 600;
     margin-block-start: 0;
-    margin-block-end: ${props => props.big ? '12px' : '4px'};
+    margin-block-end: ${props => props.isDesktop ? '12px' : '4px'};
 `
 
-const Title = styled.span<{big: boolean}>`
+const Title = styled.span<{isDesktop: boolean}>`
     display: inline-block;
-    width: ${props => props.big ? '292px' : '161px'};
-    font-size: ${props => props.big ? '24px' : '14px'};
-    margin-top: ${props => props.big ? '24px' : '12px'};
+    width: ${props => props.isDesktop ? '292px' : '161px'};
+    font-size: ${props => props.isDesktop ? '24px' : '14px'};
+    margin-top: ${props => props.isDesktop ? '24px' : '12px'};
     font-weight: 500;
 `
 
-const Info = styled.span<{big: boolean}>`
+const Info = styled.span<{isDesktop: boolean}>`
     display: inline-block;
-    font-size: ${props => props.big ? '24px' : '14px'};
-    margin-top: ${props => props.big ? '24px' : '12px'};
+    font-size: ${props => props.isDesktop ? '24px' : '14px'};
+    margin-top: ${props => props.isDesktop ? '24px' : '12px'};
 `
 
 const MainInfo = () => {
-    const {big} = useAppSelector(state => state.windowSizeReducer)
+    const {isDesktop} = useAppSelector(state => state.windowSizeReducer)
     const {employee} = useAppSelector(state => state.employeeByIdReducer);
 
     let birthdate = '',
@@ -43,16 +43,16 @@ const MainInfo = () => {
     if (employ?.length) dateOfEmployment = employ[0] + '.' + monthToNumbers.get(employ[1]) + '.' + employ[2]
 
     return (
-        <Container big={big}>
-            <MainInfoHeading big={big}>Основная информация</MainInfoHeading>
+        <Container isDesktop={isDesktop}>
+            <MainInfoHeading isDesktop={isDesktop}>Основная информация</MainInfoHeading>
             <div>
-                <Title big={big}>Контактный телефон:</Title><Info big={big}>{employee.phone}</Info>
+                <Title isDesktop={isDesktop}>Контактный телефон:</Title><Info isDesktop={isDesktop}>{employee.phone}</Info>
             </div>
             <div>
-                <Title big={big}>Дата рождения:</Title><Info big={big}>{birthdate}</Info>
+                <Title isDesktop={isDesktop}>Дата рождения:</Title><Info isDesktop={isDesktop}>{birthdate}</Info>
             </div>
             <div>
-                <Title big={big}>Дата устройства:</Title><Info big={big}>{dateOfEmployment}</Info>
+                <Title isDesktop={isDesktop}>Дата устройства:</Title><Info isDesktop={isDesktop}>{dateOfEmployment}</Info>
             </div>
         </Container>
     );

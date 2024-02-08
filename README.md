@@ -3,13 +3,11 @@
 ### [Ознакомиться можно по ссылке](https://waaliad.github.io/test-task-66bit-v2/)
 
 ### UPD
-Не знал можно ли использовать ui библиотеки, но для экономии времени взял select из ant design
-###### TODO?: заменить select из ant-design на самописный
 Некоторые моменте в представленном макете мне показались незаконченными и я позволил себе их переделать (например хлебные крошки на мобильных устройствах или пропажа половины номера телефона из таблицы при узком экране)
 
 ### Stack
 ##### Main: React + typescript + redux toolkit
-Additionally: ant-design + axios + styled-components + react-router-dom + react-intersection-observer + normalize.css
+Additionally: axios + styled-components + react-router-dom + react-intersection-observer + normalize.css
 
 ### Техническое задание
 Необходимо написать SPA приложение на React, которое будет отображать список сотрудников компании и их профили. В приложении должно быть реализовано переключение тем (темная и светлая).

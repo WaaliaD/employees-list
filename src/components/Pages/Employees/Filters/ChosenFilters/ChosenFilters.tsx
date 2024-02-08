@@ -2,8 +2,10 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {filterFormContentSlice} from 'store/reducers/FilterFormContentSlice';
+import {skillsTranslate} from '../../../../../utils/consts/skillsTranslate';
 
-const StyledSkills = styled.div<{background: string, big: boolean}>`
+const StyledSkills = styled.div<{background: string, isDesktop: boolean}>`
+    cursor: pointer;
     height: 25px;
     padding: 10px;
     background-color: ${props => props.background};
@@ -11,8 +13,8 @@ const StyledSkills = styled.div<{background: string, big: boolean}>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-right: ${props => props.big ? '24px' : '16px'};
-    margin-top: ${props => props.big ? 0 : '12px'};
+    margin-right: ${props => props.isDesktop ? '24px' : '16px'};
+    margin-top: ${props => props.isDesktop ? 0 : '12px'};
 `
 
 interface SkillsProps {
@@ -22,7 +24,7 @@ interface SkillsProps {
 const ChosenFilters: FC<SkillsProps> = ({children}) => {
     const {background, textColor} = useAppSelector(state => state.themeReducer);
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
-    const {big} = useAppSelector(state => state.windowSizeReducer);
+    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
     const {stackChanged, positionChanged, genderChanged} = filterFormContentSlice.actions;
     const dispatch = useAppDispatch();
 
@@ -36,7 +38,7 @@ const ChosenFilters: FC<SkillsProps> = ({children}) => {
     }
 
     return (
-        <StyledSkills onClick={() => cancelSelection(children)} background={background} big={big}>
+        <StyledSkills onClick={() => cancelSelection(children)} background={background} isDesktop={isDesktop}>
             <svg style={{marginRight: 10}} width="10" height="10" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.67824 5.49992L9.85953 1.3187C10.0468 1.1314 10.0468 0.827767 9.85953 0.640471C9.67223
                 0.453176 9.36859 0.453176 9.18129 0.640471L5 4.82169L0.818711 0.641111C0.631412 0.453815 0.327772
@@ -46,7 +48,7 @@ const ChosenFilters: FC<SkillsProps> = ({children}) => {
                 10.3594C9.27526 10.4527 9.39735 10.5 9.52009 10.5C9.64282 10.5 9.76556 10.4533 9.85889
                 10.3594C10.0462 10.1721 10.0462 9.86844 9.85889 9.68114L5.67824 5.49992Z" fill={textColor}/>
             </svg>
-            {children}
+            {skillsTranslate.get(children)}
         </StyledSkills>
     );
 };

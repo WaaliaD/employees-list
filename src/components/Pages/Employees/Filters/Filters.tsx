@@ -12,14 +12,14 @@ const StyledFilters = styled.div<{ second: string }>`
     padding: 0 24px;
 `
 
-const StyledFiltersContainer = styled.div<{ big: boolean }>`
+const StyledFiltersContainer = styled.div<{ isDesktop: boolean }>`
     display: flex;
-    align-items: ${props => props.big ? 'center' : 'flex-start'};
+    align-items: ${props => props.isDesktop ? 'center' : 'flex-start'};
     justify-content: space-between;
-    flex-direction: ${props => props.big ? 'row' : 'column'};
+    flex-direction: ${props => props.isDesktop ? 'row' : 'column'};
     width: 1560px;
-    padding: ${props => props.big ? '0' : '16px 0'};
-    height: ${props => props.big ? '71px' : 'auto'};
+    padding: ${props => props.isDesktop ? '0' : '16px 0'};
+    height: ${props => props.isDesktop ? '71px' : 'auto'};
 `
 
 const StyledFiltersContent = styled.div`
@@ -30,23 +30,24 @@ const StyledFiltersContent = styled.div`
     overflow: hidden;
 `
 
-const StyledButton = styled.button<{ big: boolean }>`
-    width: ${props => props.big ? '146px' : '100%'};
-    padding: ${props => props.big ? '12px 48px 12px 48px' : '6px 0'};
-    border-radius: ${props => props.big ? '8px' : '4px'};
+const StyledButton = styled.button<{ isDesktop: boolean }>`
+    width: ${props => props.isDesktop ? '146px' : '100%'};
+    padding: ${props => props.isDesktop ? '12px 48px 12px 48px' : '6px 0'};
+    border-radius: ${props => props.isDesktop ? '8px' : '4px'};
     border:none;
     color: white;
     background: #155DA4;
     font-weight: 600;
+    cursor: pointer;
 `
 
-const StyledSpan = styled.span<{ big: boolean }>`
-    font-size: ${props => props.big ? '1rem' : '14px'};
-    margin-right: ${props => props.big ? '40px' : '0'};
+const StyledSpan = styled.span<{ isDesktop: boolean }>`
+    font-size: ${props => props.isDesktop ? '20px' : '14px'};
+    margin-right: ${props => props.isDesktop ? '40px' : '0'};
 `
 
 const Filters = () => {
-    const {big} = useAppSelector(state => state.windowSizeReducer);
+    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
     const {second} = useAppSelector(state => state.themeReducer);
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
     const {setPage} = filterFormContentSlice.actions
@@ -65,12 +66,12 @@ const Filters = () => {
 
     return (
         <StyledFilters second={second}>
-            <StyledFiltersContainer big={big}>
-                {big
+            <StyledFiltersContainer isDesktop={isDesktop}>
+                {isDesktop
                     ?
                     <>
                         <StyledFiltersContent>
-                            <StyledSpan big={big}>Выбранные фильтры:</StyledSpan>
+                            <StyledSpan isDesktop={isDesktop}>Выбранные фильтры:</StyledSpan>
                             {filterFormContent.gender?.map(item =>
                                 <ChosenFilters key={item}>{item}</ChosenFilters>
                             )}
@@ -84,7 +85,7 @@ const Filters = () => {
                     </>
                     :
                     <>
-                        <StyledSpan big={big}>Выбранные фильтры:</StyledSpan>
+                        <StyledSpan isDesktop={isDesktop}>Выбранные фильтры:</StyledSpan>
                         <StyledFiltersContent style={{marginBottom: 16}}>
                             {filterFormContent.gender?.map(item =>
                                 <ChosenFilters key={item}>{item}</ChosenFilters>
@@ -98,7 +99,7 @@ const Filters = () => {
                         </StyledFiltersContent>
                     </>
                 }
-                <StyledButton big={big} onClick={handleSubmit}>Найти</StyledButton>
+                <StyledButton isDesktop={isDesktop} onClick={handleSubmit}>Найти</StyledButton>
             </StyledFiltersContainer>
         </StyledFilters>
     );

@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface WindowSizeState {
-    big: boolean
+    isDesktop: boolean
 }
 
 const initialState: WindowSizeState = {
-    big: true
+    isDesktop: true
 }
 
 export const windowSizeSlice = createSlice({
@@ -13,7 +13,7 @@ export const windowSizeSlice = createSlice({
     initialState,
     reducers: {
         setSize(state, action: PayloadAction<boolean>,) {
-            state.big = action.payload;
+            state.isDesktop = action.payload;
         }
     }
 })

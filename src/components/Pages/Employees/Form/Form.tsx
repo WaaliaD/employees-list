@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import styled from 'styled-components';
-import {Input} from 'antd';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {filterFormContentSlice} from 'store/reducers/FilterFormContentSlice';
 import Selects from './Selects/Selects'
+import Input from 'components/UI/Input'
 
 const StyledForm = styled.div`
     display: flex;
@@ -23,45 +23,50 @@ const StyledFormContent = styled.div`
     justify-content: space-between;
 `
 
-const StyledH1 = styled.h1<{big: boolean}>`
-    margin-bottom: ${props => props.big ? '28px' : '16px'};
+const StyledH1 = styled.h1<{isDesktop: boolean}>`
+    margin-bottom: ${props => props.isDesktop ? '28px' : '16px'};
     margin-top: 16px;
     margin-right: inherit;
 `
 
 const Form = () => {
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
-    const {big} = useAppSelector(state => state.windowSizeReducer);
+    const {background} = useAppSelector(state => state.themeReducer);
+    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
     const {nameChanged} = filterFormContentSlice.actions;
     const dispatch = useAppDispatch();
 
-    const handleChange = (value: string) => {
-        dispatch(nameChanged(value));
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        dispatch(nameChanged(event.target.value));
     };
 
     return (
         <StyledForm>
             <StyledFormContainer>
-                {big ?
+                {isDesktop ?
                     <>
                         <StyledFormContent>
-                            <StyledH1 big={big}>Список сотрудников</StyledH1>
+                            <StyledH1 isDesktop={isDesktop}>Список сотрудников</StyledH1>
                             <Selects />
                         </StyledFormContent>
                         <Input
-                            placeholder="Поиск"
-                            style={{marginBottom: 28}}
+                            background={background}
+                            isDesktop={isDesktop}
+                            onChange={handleChange}
+                            placeholder={"Поиск"}
                             value={filterFormContent.name}
-                            onChange={(event) => handleChange(event.target.value)}/>
+                        />
                     </>
                     :
                     <>
-                        <StyledH1 big={big}>Список сотрудников</StyledH1>
+                        <StyledH1 isDesktop={isDesktop}>Список сотрудников</StyledH1>
                         <Input
-                            placeholder="Поиск"
-                            style={{marginBottom: 12}}
+                            background={background}
+                            isDesktop={isDesktop}
+                            onChange={handleChange}
+                            placeholder={"Поиск"}
                             value={filterFormContent.name}
-                            onChange={(event) => handleChange(event.target.value)}/>
+                        />
                         <Selects/>
                     </>
                 }

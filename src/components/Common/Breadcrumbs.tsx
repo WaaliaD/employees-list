@@ -11,29 +11,29 @@ const StyledBreadcrumbs = styled.div`
     padding: 0 24px;
 `
 
-const BreadcrumbsContent = styled.div<{ big: boolean }>`
+const BreadcrumbsContent = styled.div<{ isDesktop: boolean }>`
     display: flex;
     align-items: center;
-    height: ${props => props.big ? '77px' : '44px'};
+    height: ${props => props.isDesktop ? '77px' : '44px'};
     width: 1560px;
     color: #B0B0B0;
     text-overflow: ellipsis;
 `
 
-const StyledSpan = styled.span<{ big: boolean }>`
+const StyledSpan = styled.span<{ isDesktop: boolean }>`
     cursor: pointer;
-    font-size: ${props => props.big ? '18px' : '12px'};
+    font-size: ${props => props.isDesktop ? '18px' : '12px'};
 `
 
-const Arrow = styled.img<{ big: boolean }>`
-    margin: ${props => props.big ? '0 20px' : '0 15px'};
-    height: ${props => props.big ? '12.67px' : '9.5px'};
-    width: ${props => props.big ? '7.33px' : '5.5px'};
+const Arrow = styled.img<{ isDesktop: boolean }>`
+    margin: ${props => props.isDesktop ? '0 20.33px' : '0 15.25px'};
+    height: ${props => props.isDesktop ? '12.67px' : '9.5px'};
+    width: ${props => props.isDesktop ? '7.33px' : '5.5px'};
 `
 
 const Breadcrumbs = () => {
     const {employee} = useAppSelector(state => state.employeeByIdReducer);
-    const {big} = useAppSelector(state => state.windowSizeReducer);
+    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
 
     const currentUrl = window.location;
     let params = currentUrl.pathname.split('/');
@@ -54,9 +54,9 @@ const Breadcrumbs = () => {
 
     return (
         <StyledBreadcrumbs>
-            <BreadcrumbsContent big={big}>
+            <BreadcrumbsContent isDesktop={isDesktop}>
                 <StyledSpan
-                    big={big}
+                    isDesktop={isDesktop}
                     onClick={goToMain}
                 >
                     Главная
@@ -67,12 +67,12 @@ const Breadcrumbs = () => {
                         if (urlPathnameToBreadcrumbs.has(item)) {
                             return (
                                 <>
-                                    <Arrow big={big} src={arrow} alt={'>'}/>
+                                    <Arrow key={item} isDesktop={isDesktop} src={arrow} alt={'>'}/>
                                     <StyledSpan
-                                        big={big}
+                                        isDesktop={isDesktop}
                                         onClick={() => goToThePageByName(item)}
                                     >
-                                        {big
+                                        {isDesktop
                                             ? urlPathnameToBreadcrumbs.get(item)?.[0]
                                             : urlPathnameToBreadcrumbs.get(item)?.[1]
                                         }
@@ -82,12 +82,12 @@ const Breadcrumbs = () => {
                         }
                         return (
                             <>
-                                <Arrow big={big} src={arrow} alt={'>'}/>
+                                <Arrow key={item} isDesktop={isDesktop} src={arrow} alt={'>'}/>
                                 <StyledSpan
-                                    big={big}
+                                    isDesktop={isDesktop}
                                     onClick={() => goToEmployeePageById(item)}
                                 >
-                                    {big
+                                    {isDesktop
                                         ? employee.name
                                         : employee.name &&
                                         employee.name.split(' ')[0]

@@ -11,12 +11,12 @@ const StyledHeader = styled.div`
     padding: 0 24px;
 `
 
-const Services = styled.div<{big: boolean}>`
+const Services = styled.div<{isDesktop: boolean}>`
     width: 1560px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: ${props => props.big ? '90px' : '54px'};
+    height: ${props => props.isDesktop ? '90px' : '54px'};
 `
 
 const ServicesInfo = styled.div`
@@ -30,18 +30,18 @@ const StyledSpan = styled.span`
 `
 
 const Header = () => {
-    const {big} = useAppSelector(state => state.windowSizeReducer);
+    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
 
     return (
         <StyledHeader>
-            <Services big={big}>
+            <Services isDesktop={isDesktop}>
                 <img
-                    width={big ? '101px' : '52px'}
-                    height={big ? '41px' : '22px'}
+                    width={isDesktop ? '101px' : '52px'}
+                    height={isDesktop ? '41px' : '22px'}
                     src={image}
                     alt="logo"
                 />
-                {big &&
+                {isDesktop &&
                     <ServicesInfo>
                         <StyledSpan>+7 343 290 84 76</StyledSpan>
                         <StyledSpan>info@66bit.ru</StyledSpan>
