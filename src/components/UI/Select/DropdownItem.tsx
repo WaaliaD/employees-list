@@ -89,9 +89,12 @@ const DropdownItem: FC<selectItemProps> = ({
                 handler(newState)
             }
         } else {
-            handler([item.value])
+            if (values?.includes(item.value)) {
+                handler([])
+            } else {
+                handler([item.value])
+            }
         }
-
     }
 
     return (
