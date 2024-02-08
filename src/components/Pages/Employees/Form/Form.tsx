@@ -31,7 +31,7 @@ const StyledH1 = styled.h1<{isDesktop: boolean}>`
 
 const Form = () => {
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
-    const {background} = useAppSelector(state => state.themeReducer);
+    const {background, textColor} = useAppSelector(state => state.themeReducer);
     const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
     const {nameChanged} = filterFormContentSlice.actions;
     const dispatch = useAppDispatch();
@@ -50,6 +50,7 @@ const Form = () => {
                             <Selects />
                         </StyledFormContent>
                         <Input
+                            textColor={textColor}
                             background={background}
                             isDesktop={isDesktop}
                             onChange={handleChange}
@@ -61,6 +62,7 @@ const Form = () => {
                     <>
                         <StyledH1 isDesktop={isDesktop}>Список сотрудников</StyledH1>
                         <Input
+                            textColor={textColor}
                             background={background}
                             isDesktop={isDesktop}
                             onChange={handleChange}

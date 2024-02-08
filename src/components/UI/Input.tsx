@@ -7,15 +7,17 @@ interface InputProps {
     placeholder: string;
     isDesktop: boolean;
     background: string;
+    textColor: string;
 }
 
-const StyledInput = styled.input<{isDesktop: boolean, background: string}>`
+const StyledInput = styled.input<{isDesktop: boolean, background: string, textColor: string}>`
     border: 0.5px solid #B0B0B0;
     border-radius: 5px;
     margin-bottom: ${props => props.isDesktop ? '28px' : '12px'};
     padding: 10px;
     font-size: ${props => props.isDesktop ? '20px' : '12px'};
     background-color: ${props => props.background};
+    color: ${props => props.textColor};
     
     &::-webkit-input-placeholder,
     &::-moz-placeholder {
@@ -29,9 +31,10 @@ const StyledInput = styled.input<{isDesktop: boolean, background: string}>`
     }
 `
 
-const Input: FC<InputProps> = ({value, onChange, placeholder, isDesktop, background}) => {
+const Input: FC<InputProps> = ({value, onChange, placeholder, isDesktop, background, textColor}) => {
     return (
         <StyledInput
+            textColor={textColor}
             background={background}
             isDesktop={isDesktop}
             type={'text'}

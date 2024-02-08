@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {filterFormContentSlice} from 'store/reducers/FilterFormContentSlice';
-import {skillsTranslate} from '../../../../../utils/consts/skillsTranslate';
+import {skillsTranslate} from 'utils/consts/skillsTranslate';
 
 const StyledSkills = styled.div<{background: string, isDesktop: boolean}>`
     cursor: pointer;
