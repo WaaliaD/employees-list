@@ -7,7 +7,7 @@ import {monthToNumbers} from 'utils/consts/monthToNumbers';
 const StyledTableRow = styled.div<{ second: string, isDesktop: boolean }>`
     cursor: pointer;
     border-bottom: 1px solid #F2F2F2;
-    min-width: 390px;
+    min-width: 410px;
     display: grid;
     grid-column-gap: 15px;
     grid-template-columns: ${(props) =>
@@ -20,8 +20,8 @@ const StyledTableRow = styled.div<{ second: string, isDesktop: boolean }>`
             :
                 `minmax(80px, 1fr)
                 minmax(80px, 1fr)
-                minmax(105px, 1fr)
-                minmax(80px, 1fr)`
+                minmax(115px, 1fr)
+                minmax(90px, 1fr)`
     };
     padding: 28px 0;
 

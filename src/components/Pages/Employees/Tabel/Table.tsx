@@ -30,7 +30,7 @@ const TableHead = styled.div<{isDesktop: boolean}>`
                 `minmax(80px, 1fr)
                 minmax(80px, 1fr)
                 minmax(115px, 1fr)
-                minmax(80px, 1fr)`
+                minmax(90px, 1fr)`
     };
     padding: ${(props) =>
         props.isDesktop
