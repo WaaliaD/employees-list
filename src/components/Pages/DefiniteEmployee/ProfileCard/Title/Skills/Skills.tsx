@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
-import {useAppSelector} from '../../../../hooks/redux';
+import {useAppSelector} from 'hooks/redux';
 
 const StyledSkills = styled.div<{second: string, big: boolean}>`
     min-width: ${props => props.big ? '90px' : '70px'};

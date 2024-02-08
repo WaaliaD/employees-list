@@ -1,13 +1,11 @@
 import React, {useEffect} from 'react';
-import Header from '../../Header';
 import Form from './Form/Form';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {useInView} from 'react-intersection-observer';
-import {fetchEmployees} from '../../../store/reducers/ActionCreators';
-import Breadcrumbs from '../../Breadcrumbs';
-import Filters from './Form/Filters'
+import {fetchEmployees} from 'store/reducers/ActionCreators';
+import Filters from './Filters/Filters'
 import Table from './Tabel/Table'
-import {filterFormContentSlice} from '../../../store/reducers/FilterFormContentSlice';
+import {filterFormContentSlice} from 'store/reducers/FilterFormContentSlice';
 
 const Employees = () => {
     const {employees} = useAppSelector(state => state.employeesReducer);
@@ -33,8 +31,6 @@ const Employees = () => {
 
     return (
         <>
-            <Header/>
-            <Breadcrumbs/>
             <Form/>
             <Filters/>
             <Table/>

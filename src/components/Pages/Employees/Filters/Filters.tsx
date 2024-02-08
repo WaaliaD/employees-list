@@ -1,9 +1,9 @@
 import React from 'react';
-import ChosenFilters from './ChosenFilters';
+import ChosenFilters from './ChosenFilters/ChosenFilters';
 import styled from 'styled-components';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {fetchEmployees} from '../../../../store/reducers/ActionCreators';
-import {filterFormContentSlice} from '../../../../store/reducers/FilterFormContentSlice';
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
+import {fetchEmployees} from 'store/reducers/ActionCreators';
+import {filterFormContentSlice} from 'store/reducers/FilterFormContentSlice';
 
 const StyledFilters = styled.div<{ second: string }>`
     display: flex;

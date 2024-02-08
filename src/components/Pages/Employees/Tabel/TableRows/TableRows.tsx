@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
-import {useAppSelector} from '../../../../hooks/redux';
-import {monthToNumbers} from '../../../../utils/monthToNumbers';
+import {useAppSelector} from 'hooks/redux';
+import {monthToNumbers} from 'utils/consts/monthToNumbers';
 
 const StyledTableRow = styled.div<{second: string, big: boolean}>`
     display: grid;
@@ -39,7 +39,7 @@ interface TableRowProps {
     id: number;
 }
 
-const TableRow: FC<TableRowProps> = ({name, phone, position, birthdate, id}) => {
+const TableRows: FC<TableRowProps> = ({name, phone, position, birthdate, id}) => {
     const {big} = useAppSelector(state => state.windowSizeReducer);
     const {second} = useAppSelector(state => state.themeReducer);
 
@@ -57,4 +57,4 @@ const TableRow: FC<TableRowProps> = ({name, phone, position, birthdate, id}) => 
     );
 };
 
-export default TableRow;
+export default TableRows;

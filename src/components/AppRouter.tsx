@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
-import {routes} from '../routes';
-import {EMPLOYEES_ROUTE} from '../utils/employeesConsts';
+import {routes} from 'utils/routes';
+import {EMPLOYEES_ROUTE} from 'utils/paths/employees';
 
 const AppRouter = () => {
     return (

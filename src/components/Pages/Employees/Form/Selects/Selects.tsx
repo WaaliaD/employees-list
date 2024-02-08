@@ -1,8 +1,8 @@
 import React from 'react';
-import CustomSelect from './CustomSelect';
-import {gender, position, stack} from '../../../../../utils/selectOptionsConsts'
-import {useAppDispatch, useAppSelector} from '../../../../../hooks/redux';
-import {filterFormContentSlice} from '../../../../../store/reducers/FilterFormContentSlice';
+import CustomSelect from './CustomSelect/CustomSelect';
+import {gender, position, stack} from 'utils/consts/selectOptions'
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
+import {filterFormContentSlice} from 'store/reducers/FilterFormContentSlice';
 import styled from 'styled-components';
 
 const Container = styled.div<{big: boolean}>`

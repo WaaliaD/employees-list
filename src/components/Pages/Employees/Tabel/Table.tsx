@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import TableRow from './TableRow';
-import {useAppSelector} from '../../../../hooks/redux';
+import TableRows from './TableRows/TableRows';
+import {useAppSelector} from 'hooks/redux';
 
 const TableContainer = styled.div`
     display: flex;
@@ -61,7 +61,7 @@ const Table = () => {
                 </TableHead>
                 {employees.length
                     ?
-                    employees.map(item => <TableRow
+                    employees.map(item => <TableRows
                         key={item.id}
                         name={item.name}
                         phone={item.phone}

@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import {BrowserRouter} from 'react-router-dom';
-import AppRouter from './components/AppRouter';
+import AppRouter from 'components/AppRouter';
 import { ConfigProvider } from 'antd';
-import {useAppDispatch, useAppSelector} from './hooks/redux';
-import {themeSlice} from './store/reducers/ThemeSlice';
-import {windowSizeSlice} from './store/reducers/WindowSizeSlice';
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
+import {themeSlice} from 'store/reducers/ThemeSlice';
+import {windowSizeSlice} from 'store/reducers/WindowSizeSlice';
 import styled from 'styled-components';
+import Header from 'components/Common/Header';
+import Breadcrumbs from 'components/Common/Breadcrumbs';
 
 const Wrapper = styled.div<{tc: string, bc: string}>`
     color: ${props => props.tc};
@@ -55,6 +57,8 @@ export default function App() {
                     fontFamily: 'Roboto',
                 }}>
                 <BrowserRouter basename='/test-task-66bit-v2'>
+                    <Header/>
+                    <Breadcrumbs/>
                     <AppRouter/>
                 </BrowserRouter>
             </Wrapper>

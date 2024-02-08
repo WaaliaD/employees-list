@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import image from "../images/logo.png";
+import image from "utils/images/logo.png";
 import {Switch} from 'antd';
-import {useAppDispatch, useAppSelector} from '../hooks/redux';
-import {themeSlice} from '../store/reducers/ThemeSlice';
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
+import {themeSlice} from 'store/reducers/ThemeSlice';
 
 const StyledHeader = styled.div`
     display: flex;

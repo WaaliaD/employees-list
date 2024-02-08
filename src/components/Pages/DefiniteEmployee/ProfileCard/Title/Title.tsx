@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useAppSelector} from '../../../../hooks/redux';
-import Skills from './Skills';
+import {useAppSelector} from 'hooks/redux';
+import Skills from './Skills/Skills';
 
 const Container = styled.div<{big: boolean}>`
     display: flex;
@@ -41,7 +41,7 @@ const Role = styled.h3<{big: boolean}>`
     font-weight: 400;
 `
 
-const ProfileTitle = () => {
+const Title = () => {
     const {employee} = useAppSelector(state => state.employeeByIdReducer);
     const {big} = useAppSelector(state => state.windowSizeReducer);
 
@@ -76,4 +76,4 @@ const ProfileTitle = () => {
     }
 };
 
-export default ProfileTitle;
+export default Title;

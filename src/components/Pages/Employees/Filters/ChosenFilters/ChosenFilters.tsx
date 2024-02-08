@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {filterFormContentSlice} from '../../../../store/reducers/FilterFormContentSlice';
+import {useAppDispatch, useAppSelector} from 'hooks/redux';
+import {filterFormContentSlice} from 'store/reducers/FilterFormContentSlice';
 
 const StyledSkills = styled.div<{background: string, big: boolean}>`
     height: 25px;

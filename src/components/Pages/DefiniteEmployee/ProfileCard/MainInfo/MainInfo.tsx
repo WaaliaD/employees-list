@@ -1,7 +1,7 @@
 import React from 'react';
-import {useAppSelector} from '../../../../hooks/redux';
+import {useAppSelector} from 'hooks/redux';
 import styled from 'styled-components';
-import {monthToNumbers} from '../../../../utils/monthToNumbers';
+import {monthToNumbers} from 'utils/consts/monthToNumbers';
 
 const Container = styled.div<{big: boolean}>`
     display: flex;
