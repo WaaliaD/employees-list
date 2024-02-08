@@ -14,6 +14,7 @@ interface SelectProps {
     open: () => void;
     isOpen: boolean;
     isDesktop: boolean;
+    isMultiply?: boolean;
 }
 
 const Container = styled.div`
@@ -42,7 +43,8 @@ const Select: FC<SelectProps> = ({
         backgroundColor,
         isOpen,
         open,
-        isDesktop
+        isDesktop,
+        isMultiply = false,
     }) => {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -60,6 +62,7 @@ const Select: FC<SelectProps> = ({
             >
                 {options.map(item =>
                     <DropdownItem
+                        isMultiply={isMultiply}
                         key={item.value}
                         isDesktop={isDesktop}
                         handler={handler}

@@ -60,6 +60,7 @@ const Selects = () => {
                 values={filterFormContent.gender}
             />
             <Select
+                isMultiply={true}
                 isDesktop={isDesktop}
                 isOpen={isThirdOpen}
                 open={() => dispatch(toggleThird())}

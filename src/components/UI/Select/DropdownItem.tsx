@@ -8,6 +8,7 @@ interface selectItemProps {
     backgroundColor: string;
     secondColor: string;
     isDesktop: boolean;
+    isMultiply: boolean;
 }
 
 const Container = styled.div<{background: string, second: string, isDesktop: boolean}>`
@@ -67,17 +68,30 @@ const StyledInput = styled.input`
     }
 `
 
-const DropdownItem: FC<selectItemProps> = ({item, handler, values, secondColor, backgroundColor, isDesktop}) => {
+const DropdownItem: FC<selectItemProps> = ({
+        item,
+        handler,
+        values,
+        secondColor,
+        backgroundColor,
+        isDesktop,
+        isMultiply
+}) => {
     function onClick() {
-        if (values?.includes(item.value)) {
-            handler(values.filter(el => el !== item.value))
-        } else {
-            let newState = [item.value]
-            if (values?.length) {
-                newState = newState.concat(values)
+        if(isMultiply) {
+            if (values?.includes(item.value)) {
+                handler(values.filter(el => el !== item.value))
+            } else {
+                let newState = [item.value]
+                if (values?.length) {
+                    newState = newState.concat(values)
+                }
+                handler(newState)
             }
-            handler(newState)
+        } else {
+            handler([item.value])
         }
+
     }
 
     return (
