@@ -4,7 +4,6 @@ import {useAppDispatch, useAppSelector} from 'hooks/redux';
 import {filterFormContentSlice} from 'store/reducers/FilterFormContentSlice';
 import styled from 'styled-components';
 import Select from 'components/UI/Select';
-import {selectsSlice} from 'store/reducers/SelectsSlice';
 
 const Container = styled.div<{isDesktop: boolean}>`
     width: ${props => props.isDesktop ? '475px' : '100%'}; 
@@ -18,10 +17,8 @@ const Selects = () => {
     const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
     const {background, second} = useAppSelector(state => state.themeReducer);
-    const {isFirstOpen, isSecondOpen, isThirdOpen} = useAppSelector(state => state.selectsReducer);
     const {positionChanged, genderChanged, stackChanged} = filterFormContentSlice.actions;
     const dispatch = useAppDispatch();
-    const {toggleThird, toggleSecond, toggleFirst} = selectsSlice.actions;
 
     function positionDispatch(content: string[]) {
         dispatch(positionChanged(content))
@@ -39,8 +36,6 @@ const Selects = () => {
         <Container isDesktop={isDesktop}>
             <Select
                 isDesktop={isDesktop}
-                isOpen={isFirstOpen}
-                open={() => dispatch(toggleFirst())}
                 backgroundColor={background}
                 secondColor={second}
                 handler={positionDispatch}
@@ -50,8 +45,6 @@ const Selects = () => {
             />
             <Select
                 isDesktop={isDesktop}
-                isOpen={isSecondOpen}
-                open={() => dispatch(toggleSecond())}
                 backgroundColor={background}
                 secondColor={second}
                 handler={genderDispatch}
@@ -62,8 +55,6 @@ const Selects = () => {
             <Select
                 isMultiply={true}
                 isDesktop={isDesktop}
-                isOpen={isThirdOpen}
-                open={() => dispatch(toggleThird())}
                 backgroundColor={background}
                 secondColor={second}
                 handler={stackDispatch}

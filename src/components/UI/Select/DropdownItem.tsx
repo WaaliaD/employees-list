@@ -78,21 +78,20 @@ const DropdownItem: FC<selectItemProps> = ({
         isMultiply
 }) => {
     function onClick() {
+        let itemValue = item.value
         if(isMultiply) {
-            if (values?.includes(item.value)) {
-                handler(values.filter(el => el !== item.value))
+            if (values?.includes(itemValue)) {
+                handler(values.filter(el => el !== itemValue))
+            } else if (values?.length) {
+                handler([itemValue].concat(values))
             } else {
-                let newState = [item.value]
-                if (values?.length) {
-                    newState = newState.concat(values)
-                }
-                handler(newState)
+                handler([itemValue])
             }
         } else {
-            if (values?.includes(item.value)) {
+            if (values?.includes(itemValue)) {
                 handler([])
             } else {
-                handler([item.value])
+                handler([itemValue])
             }
         }
     }

@@ -1,4 +1,4 @@
-import React, {FC, useRef} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import thumbnail from 'utils/images/selectThumbnail.svg'
 import DropdownItem from './DropdownItem';
 import styled from 'styled-components';
@@ -11,8 +11,6 @@ interface SelectProps {
     values: string[];
     backgroundColor: string;
     secondColor: string;
-    open: () => void;
-    isOpen: boolean;
     isDesktop: boolean;
     isMultiply?: boolean;
 }
@@ -41,16 +39,28 @@ const Select: FC<SelectProps> = ({
         values,
         secondColor,
         backgroundColor,
-        isOpen,
-        open,
         isDesktop,
         isMultiply = false,
     }) => {
+    const [isOpen, setIsOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
+    const wrapRef = useRef<HTMLDivElement>(null);
+
+    function handleClock(event: MouseEvent) {
+        if(!(wrapRef.current && wrapRef.current.contains(event.target as Node))) {
+            setIsOpen(false)
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClock);
+
+        return () => document.removeEventListener('mousedown', handleClock);
+    }, []);
 
     return (
-        <Container>
-            <Title ref={ref} onClick={open}>
+        <Container ref={wrapRef}>
+            <Title ref={ref} onClick={() => setIsOpen(prevState => !prevState)}>
                 <span>{placeholder}</span>
                 <StyledImg src={thumbnail} alt="^" isOpen={isOpen} isDesktop={isDesktop}/>
             </Title>

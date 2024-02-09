@@ -4,7 +4,6 @@ import filterFormContentReducer from './reducers/FilterFormContentSlice';
 import employeeByIdReducer from './reducers/EmployeeByIdSlice';
 import themeReducer from './reducers/ThemeSlice';
 import windowSizeReducer from './reducers/WindowSizeSlice';
-import selectsReducer from './reducers/SelectsSlice';
 
 const rootReducer = combineReducers({
     employeesReducer,
@@ -12,7 +11,6 @@ const rootReducer = combineReducers({
     employeeByIdReducer,
     themeReducer,
     windowSizeReducer,
-    selectsReducer,
 })
 
 export const setupStore = () => {
