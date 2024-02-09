@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const Selects = () => {
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
-    const {background, second} = useAppSelector(state => state.themeReducer);
+    const {background, second} = useAppSelector(state => state.applicationAppearanceReducer);
     const {positionChanged, genderChanged, stackChanged} = filterFormContentSlice.actions;
     const dispatch = useAppDispatch();
 

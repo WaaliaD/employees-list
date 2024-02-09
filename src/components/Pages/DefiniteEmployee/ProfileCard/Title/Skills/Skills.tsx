@@ -26,7 +26,7 @@ interface SkillsProps {
 }
 
 const Skills: FC<SkillsProps> = ({children}) => {
-    const {second} = useAppSelector(state => state.themeReducer);
+    const {second} = useAppSelector(state => state.applicationAppearanceReducer);
 
     return (
         <StyledSkills second={second}>

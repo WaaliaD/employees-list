@@ -69,7 +69,7 @@ const Role = styled.h3`
 
 const Title = () => {
     const {employee} = useAppSelector(state => state.employeeByIdReducer);
-    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
+    const {isDesktop} = useAppSelector(state => state.applicationAppearanceReducer);
 
     if (isDesktop) {
         return (

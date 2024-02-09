@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import moon from 'utils/images/moon.svg'
 import sun from 'utils/images/sun.svg'
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
-import {themeSlice} from 'store/reducers/ThemeSlice';
+import {applicationAppearanceSlice} from 'store/reducers/ApplicationAppearanceSlice';
 
 const StyledLabel = styled.label`
     width: 55px;
@@ -100,8 +100,8 @@ const Sun = styled.img<{dark: boolean}>`
 `
 
 const Switch = () => {
-    const {dark} = useAppSelector(state => state.themeReducer)
-    const {turnLightTheme, turnDarkTheme} = themeSlice.actions;
+    const {dark} = useAppSelector(state => state.applicationAppearanceReducer)
+    const {turnLightTheme, turnDarkTheme} = applicationAppearanceSlice.actions;
     const dispatch = useAppDispatch();
 
     function toggleTheme () {

@@ -1,19 +1,21 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface ThemeState {
     background: string,
     second: string,
     textColor: string,
-    dark: boolean
+    dark: boolean,
+    isDesktop: boolean,
 }
 
 const initialState: ThemeState = {
     background: '#FFFFFF',
     second: '#F2F2F2',
     textColor: '#292929',
-    dark: false
+    dark: false,
+    isDesktop: true,
 }
-export const themeSlice = createSlice({
+export const applicationAppearanceSlice = createSlice({
     name: 'theme',
     initialState,
     reducers: {
@@ -31,7 +33,10 @@ export const themeSlice = createSlice({
             state.dark = true
             localStorage.setItem('theme', 'true')
         },
+        setSize(state, action: PayloadAction<boolean>,) {
+            state.isDesktop = action.payload;
+        }
     }
 })
 
-export default themeSlice.reducer;
+export default applicationAppearanceSlice.reducer;

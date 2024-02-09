@@ -35,8 +35,7 @@ const StyledH1 = styled.h1`
 
 const Form = () => {
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
-    const {background, textColor} = useAppSelector(state => state.themeReducer);
-    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
+    const {background, textColor, isDesktop} = useAppSelector(state => state.applicationAppearanceReducer);
     const {nameChanged} = filterFormContentSlice.actions;
     const dispatch = useAppDispatch();
 

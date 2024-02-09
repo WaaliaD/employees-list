@@ -44,7 +44,7 @@ interface TableRowProps {
 }
 
 const TableRows: FC<TableRowProps> = ({name, phone, position, birthdate, id}) => {
-    const {second} = useAppSelector(state => state.themeReducer);
+    const {second} = useAppSelector(state => state.applicationAppearanceReducer);
 
     const router = useNavigate();
     const birth = birthdate.split(' ');

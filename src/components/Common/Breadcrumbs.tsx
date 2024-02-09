@@ -47,7 +47,7 @@ const Arrow = styled.img`
 
 const Breadcrumbs = () => {
     const {employee} = useAppSelector(state => state.employeeByIdReducer);
-    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
+    const {isDesktop} = useAppSelector(state => state.applicationAppearanceReducer);
 
     const currentUrl = window.location;
     let params = currentUrl.pathname.split('/');
@@ -95,12 +95,12 @@ const Breadcrumbs = () => {
                                     {isDesktop
                                         ? employee.name
                                         : employee.name &&
-                                        employee.name.split(' ')[0]
-                                        + ' '
-                                        + employee.name.split(' ')[1][0]
-                                        + '. '
-                                        + employee.name.split(' ')[2][0]
-                                        + '.'
+                                            employee.name.split(' ')[0]
+                                            + ' '
+                                            + employee.name.split(' ')[1][0]
+                                            + '. '
+                                            + employee.name.split(' ')[2][0]
+                                            + '.'
                                     }
                                 </StyledSpan>
                             </>

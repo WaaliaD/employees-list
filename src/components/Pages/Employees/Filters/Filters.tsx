@@ -65,8 +65,7 @@ const StyledSpan = styled.span`
 `
 
 const Filters = () => {
-    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
-    const {second} = useAppSelector(state => state.themeReducer);
+    const {second, isDesktop} = useAppSelector(state => state.applicationAppearanceReducer);
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
     const {setPage} = filterFormContentSlice.actions
     const dispatch = useAppDispatch();

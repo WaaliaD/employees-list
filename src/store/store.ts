@@ -2,15 +2,13 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import employeesReducer from './reducers/EmployeesSlice'
 import filterFormContentReducer from './reducers/FilterFormContentSlice';
 import employeeByIdReducer from './reducers/EmployeeByIdSlice';
-import themeReducer from './reducers/ThemeSlice';
-import windowSizeReducer from './reducers/WindowSizeSlice';
+import applicationAppearanceReducer from './reducers/ApplicationAppearanceSlice';
 
 const rootReducer = combineReducers({
     employeesReducer,
     filterFormContentReducer,
     employeeByIdReducer,
-    themeReducer,
-    windowSizeReducer,
+    applicationAppearanceReducer,
 })
 
 export const setupStore = () => {

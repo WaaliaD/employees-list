@@ -27,7 +27,7 @@ interface SkillsProps {
 }
 
 const ChosenFilters: FC<SkillsProps> = ({children}) => {
-    const {background, textColor} = useAppSelector(state => state.themeReducer);
+    const {background, textColor} = useAppSelector(state => state.applicationAppearanceReducer);
     const {filterFormContent} = useAppSelector(state => state.filterFormContentReducer);
     const {stackChanged, positionChanged, genderChanged} = filterFormContentSlice.actions;
     const dispatch = useAppDispatch();

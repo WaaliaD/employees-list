@@ -2,8 +2,7 @@ import React, {useEffect} from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import AppRouter from 'components/AppRouter';
 import {useAppDispatch, useAppSelector} from 'hooks/redux';
-import {themeSlice} from 'store/reducers/ThemeSlice';
-import {windowSizeSlice} from 'store/reducers/WindowSizeSlice';
+import {applicationAppearanceSlice} from 'store/reducers/ApplicationAppearanceSlice';
 import styled from 'styled-components';
 import Header from 'components/Common/Header';
 import Breadcrumbs from 'components/Common/Breadcrumbs';
@@ -21,10 +20,9 @@ const Wrapper = styled.div<{ tc: string, bc: string }>`
 `
 
 export default function App() {
-    const {background, textColor} = useAppSelector(state => state.themeReducer);
+    const {background, textColor} = useAppSelector(state => state.applicationAppearanceReducer);
     const dispatch = useAppDispatch();
-    const {turnDarkTheme} = themeSlice.actions;
-    const {setSize} = windowSizeSlice.actions;
+    const {turnDarkTheme, setSize} = applicationAppearanceSlice.actions;
 
     useEffect(() => {
         if (localStorage.getItem('theme')) {
