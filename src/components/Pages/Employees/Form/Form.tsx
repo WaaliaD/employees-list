@@ -23,10 +23,14 @@ const StyledFormContent = styled.div`
     justify-content: space-between;
 `
 
-const StyledH1 = styled.h1<{isDesktop: boolean}>`
-    margin-bottom: ${props => props.isDesktop ? '28px' : '16px'};
+const StyledH1 = styled.h1`
+    margin-bottom: 28px;
     margin-top: 16px;
     margin-right: inherit;
+
+    @media (max-width: 768px) {
+        margin-bottom: 16px;
+    }
 `
 
 const Form = () => {
@@ -46,13 +50,12 @@ const Form = () => {
                 {isDesktop ?
                     <>
                         <StyledFormContent>
-                            <StyledH1 isDesktop={isDesktop}>Список сотрудников</StyledH1>
+                            <StyledH1>Список сотрудников</StyledH1>
                             <Selects />
                         </StyledFormContent>
                         <Input
                             textColor={textColor}
                             background={background}
-                            isDesktop={isDesktop}
                             onChange={handleChange}
                             placeholder={"Поиск"}
                             value={filterFormContent.name}
@@ -60,11 +63,10 @@ const Form = () => {
                     </>
                     :
                     <>
-                        <StyledH1 isDesktop={isDesktop}>Список сотрудников</StyledH1>
+                        <StyledH1>Список сотрудников</StyledH1>
                         <Input
                             textColor={textColor}
                             background={background}
-                            isDesktop={isDesktop}
                             onChange={handleChange}
                             placeholder={"Поиск"}
                             value={filterFormContent.name}

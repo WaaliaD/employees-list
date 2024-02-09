@@ -11,7 +11,6 @@ interface SelectProps {
     values: string[];
     backgroundColor: string;
     secondColor: string;
-    isDesktop: boolean;
     isMultiply?: boolean;
 }
 
@@ -25,11 +24,17 @@ const Title = styled.div`
     cursor: pointer;
 `
 
-const StyledImg = styled.img<{ isOpen: boolean, isDesktop: boolean }>`
-    width: ${props => props.isDesktop ? '16.66px' : '10px'};
-    height: ${props => props.isDesktop ? '7.1px' : '5px'};
-    margin-left: ${props => props.isDesktop ? '12px' : '8px'};
+const StyledImg = styled.img<{isOpen: boolean}>`
+    width: 16.66px;
+    height: 7.1px;
+    margin-left: 12px;
     rotate: ${props => props.isOpen ? '180deg' : '0deg'};
+
+    @media (max-width: 768px) {
+        width: 10px;
+        height: 5px;
+        margin-left: 8px;
+    }
 `
 
 const Select: FC<SelectProps> = ({
@@ -39,7 +44,6 @@ const Select: FC<SelectProps> = ({
         values,
         secondColor,
         backgroundColor,
-        isDesktop,
         isMultiply = false,
     }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,10 +66,9 @@ const Select: FC<SelectProps> = ({
         <Container ref={wrapRef}>
             <Title ref={ref} onClick={() => setIsOpen(prevState => !prevState)}>
                 <span>{placeholder}</span>
-                <StyledImg src={thumbnail} alt="^" isOpen={isOpen} isDesktop={isDesktop}/>
+                <StyledImg src={thumbnail} alt="^" isOpen={isOpen}/>
             </Title>
             <Dropdown
-                isDesktop={isDesktop}
                 title={ref}
                 isOpen={isOpen}
                 backgroundColor={backgroundColor}
@@ -74,7 +77,6 @@ const Select: FC<SelectProps> = ({
                     <DropdownItem
                         isMultiply={isMultiply}
                         key={item.value}
-                        isDesktop={isDesktop}
                         handler={handler}
                         item={item}
                         values={values}

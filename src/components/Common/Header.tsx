@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import image from "utils/images/logo.png";
 import Switch from '../UI/Switch';
-import {useAppSelector} from 'hooks/redux';
 
 const StyledHeader = styled.div`
     display: flex;
@@ -11,16 +10,24 @@ const StyledHeader = styled.div`
     padding: 0 24px;
 `
 
-const Services = styled.div<{isDesktop: boolean}>`
+const Services = styled.div`
     width: 1560px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: ${props => props.isDesktop ? '90px' : '54px'};
+    height: 90px;
+
+    @media (max-width: 768px) {
+        height: 54px;
+    }
 `
 
 const ServicesInfo = styled.div`
     margin-left: auto;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 
 const StyledSpan = styled.span`
@@ -29,24 +36,25 @@ const StyledSpan = styled.span`
     font-size: 18px;
 `
 
-const Header = () => {
-    const {isDesktop} = useAppSelector(state => state.windowSizeReducer);
+const Logo = styled.img`
+    width: 101px;
+    height: 41px;
 
+    @media (max-width: 768px) {
+        width: 52px;
+        height: 22px;
+    }
+`
+
+const Header = () => {
     return (
         <StyledHeader>
-            <Services isDesktop={isDesktop}>
-                <img
-                    width={isDesktop ? '101px' : '52px'}
-                    height={isDesktop ? '41px' : '22px'}
-                    src={image}
-                    alt="logo"
-                />
-                {isDesktop &&
-                    <ServicesInfo>
-                        <StyledSpan>+7 343 290 84 76</StyledSpan>
-                        <StyledSpan>info@66bit.ru</StyledSpan>
-                    </ServicesInfo>
-                }
+            <Services>
+                <Logo src={image} alt="logo"/>
+                <ServicesInfo>
+                    <StyledSpan>+7 343 290 84 76</StyledSpan>
+                    <StyledSpan>info@66bit.ru</StyledSpan>
+                </ServicesInfo>
                 <Switch/>
             </Services>
         </StyledHeader>

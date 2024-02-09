@@ -12,6 +12,12 @@ const Wrapper = styled.div<{ tc: string, bc: string }>`
     color: ${props => props.tc};
     background-color: ${props => props.bc};
     min-height: 100vh;
+    font-size: 20px;
+    font-family: 'Roboto', serif;
+    
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
 `
 
 export default function App() {
@@ -19,8 +25,6 @@ export default function App() {
     const dispatch = useAppDispatch();
     const {turnDarkTheme} = themeSlice.actions;
     const {setSize} = windowSizeSlice.actions;
-    const {isDesktop} = useAppSelector(state => state.windowSizeReducer)
-    const fontSize = isDesktop ? 20 : 12
 
     useEffect(() => {
         if (localStorage.getItem('theme')) {
@@ -36,10 +40,7 @@ export default function App() {
         <Wrapper
             bc={background}
             tc={textColor}
-            style={{
-                fontSize: fontSize,
-                fontFamily: 'Roboto',
-            }}>
+        >
             <BrowserRouter basename='/test-task-66bit-v2'>
                 <Header/>
                 <Breadcrumbs/>

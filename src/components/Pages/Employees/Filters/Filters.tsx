@@ -12,14 +12,21 @@ const StyledFilters = styled.div<{ second: string }>`
     padding: 0 24px;
 `
 
-const StyledFiltersContainer = styled.div<{ isDesktop: boolean }>`
+const StyledFiltersContainer = styled.div`
     display: flex;
-    align-items: ${props => props.isDesktop ? 'center' : 'flex-start'};
+    align-items: center;
     justify-content: space-between;
-    flex-direction: ${props => props.isDesktop ? 'row' : 'column'};
+    flex-direction: row;
     width: 1560px;
-    padding: ${props => props.isDesktop ? '0' : '16px 0'};
-    height: ${props => props.isDesktop ? '71px' : 'auto'};
+    padding: 0;
+    height: 71px;
+
+    @media (max-width: 768px) {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+        height: auto;
+    }
 `
 
 const StyledFiltersContent = styled.div`
@@ -30,20 +37,31 @@ const StyledFiltersContent = styled.div`
     overflow: hidden;
 `
 
-const StyledButton = styled.button<{ isDesktop: boolean }>`
-    width: ${props => props.isDesktop ? '146px' : '100%'};
-    padding: ${props => props.isDesktop ? '12px 48px 12px 48px' : '6px 0'};
-    border-radius: ${props => props.isDesktop ? '8px' : '4px'};
+const StyledButton = styled.button`
+    width: 146px;
+    padding: 12px 48px 12px 48px;
+    border-radius: 8px;
     border:none;
     color: white;
     background: #155DA4;
     font-weight: 600;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 6px 0;
+        border-radius: 4px;
+    }
 `
 
-const StyledSpan = styled.span<{ isDesktop: boolean }>`
-    font-size: ${props => props.isDesktop ? '20px' : '14px'};
-    margin-right: ${props => props.isDesktop ? '40px' : '0'};
+const StyledSpan = styled.span`
+    font-size: 20px;
+    margin-right: 40px;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+        margin-right: 0;
+    }
 `
 
 const Filters = () => {
@@ -66,12 +84,12 @@ const Filters = () => {
 
     return (
         <StyledFilters second={second}>
-            <StyledFiltersContainer isDesktop={isDesktop}>
+            <StyledFiltersContainer>
                 {isDesktop
                     ?
                     <>
                         <StyledFiltersContent>
-                            <StyledSpan isDesktop={isDesktop}>Выбранные фильтры:</StyledSpan>
+                            <StyledSpan>Выбранные фильтры:</StyledSpan>
                             {filterFormContent.gender?.map(item =>
                                 <ChosenFilters key={item}>{item}</ChosenFilters>
                             )}
@@ -85,7 +103,7 @@ const Filters = () => {
                     </>
                     :
                     <>
-                        <StyledSpan isDesktop={isDesktop}>Выбранные фильтры:</StyledSpan>
+                        <StyledSpan>Выбранные фильтры:</StyledSpan>
                         <StyledFiltersContent style={{marginBottom: 16}}>
                             {filterFormContent.gender?.map(item =>
                                 <ChosenFilters key={item}>{item}</ChosenFilters>
@@ -99,7 +117,7 @@ const Filters = () => {
                         </StyledFiltersContent>
                     </>
                 }
-                <StyledButton isDesktop={isDesktop} onClick={handleSubmit}>Найти</StyledButton>
+                <StyledButton onClick={handleSubmit}>Найти</StyledButton>
             </StyledFiltersContainer>
         </StyledFilters>
     );

@@ -3,42 +3,68 @@ import styled from 'styled-components';
 import {useAppSelector} from 'hooks/redux';
 import Skills from './Skills/Skills';
 
-const Container = styled.div<{isDesktop: boolean}>`
+const Container = styled.div`
     display: flex;
-    flex-direction: ${props => props.isDesktop ? 'row' : 'column'};
-    margin-top: ${props => props.isDesktop ? '16px' : '12px'};
+    flex-direction: row;
+    margin-top: 16px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        margin-top: 12px;
+    }
 `
 
-const ProfileContent = styled.div<{isDesktop: boolean}>`
+const ProfileContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: ${props => props.isDesktop ? '42px' : '16px'};
+    margin-left: 42px;
+
+    @media (max-width: 768px) {
+        margin-left: 16px;
+    }
 `
 
-const SkillsBar = styled.div<{isDesktop: boolean}>`
+const SkillsBar = styled.div`
     display: flex;
     flex-wrap: wrap;
-    margin-top: ${props => props.isDesktop ? '0' : '12px'};
+    margin-top: 0;
+
+    @media (max-width: 768px) {
+        margin-top: 12px;
+    }
 `
 
-const StyledImage = styled.img<{isDesktop: boolean}>`
-    width: ${props => props.isDesktop ? '163px' : '100px'};
-    height: ${props => props.isDesktop ? '164px' : '100px'};
+const StyledImage = styled.img`
+    width: 163px;
+    height: 164px;
     border-radius: 50%;
+
+    @media (max-width: 768px) {
+        width: 100px;
+        height: 100px;
+    }
 `
 
-const Name = styled.h1<{isDesktop: boolean}>`
-    font-size:  ${props => props.isDesktop ? '40px' : '20px'};
+const Name = styled.h1`
+    font-size: 40px;
     margin-block-start: 5px;
     margin-block-end: 16px;
+
+    @media (max-width: 768px) {
+        font-size: 20px;
+    }
 `
 
-const Role = styled.h3<{isDesktop: boolean}>`
-    font-size: ${props => props.isDesktop ? '24px' : '14px'};
+const Role = styled.h3`
+    font-size: 24px;
     margin-block-start: 0;
     margin-block-end: 24px;
     font-weight: 400;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
 `
 
 const Title = () => {
@@ -47,12 +73,12 @@ const Title = () => {
 
     if (isDesktop) {
         return (
-            <Container isDesktop={isDesktop}>
-                <StyledImage src={employee.photo} alt="Photo" isDesktop={isDesktop}/>
-                <ProfileContent isDesktop={isDesktop}>
-                    <Name isDesktop={isDesktop}>{employee.name}</Name>
-                    <Role isDesktop={isDesktop}>{employee.position}</Role>
-                    <SkillsBar isDesktop={isDesktop}>
+            <Container>
+                <StyledImage src={employee.photo} alt="Photo"/>
+                <ProfileContent>
+                    <Name>{employee.name}</Name>
+                    <Role>{employee.position}</Role>
+                    <SkillsBar>
                         {employee.stack?.map(item => <Skills key={item}>{item}</Skills>)}
                     </SkillsBar>
                 </ProfileContent>
@@ -60,15 +86,15 @@ const Title = () => {
         )
     } else {
         return (
-            <Container isDesktop={isDesktop}>
+            <Container>
                 <div style={{display: 'flex'}}>
-                    <StyledImage src={employee.photo} alt="Photo" isDesktop={isDesktop}/>
-                    <ProfileContent isDesktop={isDesktop}>
-                        <Name isDesktop={isDesktop}>{employee.name}</Name>
-                        <Role isDesktop={isDesktop}>{employee.position}</Role>
+                    <StyledImage src={employee.photo} alt="Photo"/>
+                    <ProfileContent>
+                        <Name>{employee.name}</Name>
+                        <Role>{employee.position}</Role>
                     </ProfileContent>
                 </div>
-                <SkillsBar isDesktop={isDesktop}>
+                <SkillsBar>
                     {employee.stack?.map(item => <Skills key={item}>{item}</Skills>)}
                 </SkillsBar>
             </Container>

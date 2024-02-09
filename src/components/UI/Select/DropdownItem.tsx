@@ -7,21 +7,24 @@ interface selectItemProps {
     values: string[];
     backgroundColor: string;
     secondColor: string;
-    isDesktop: boolean;
     isMultiply: boolean;
 }
 
-const Container = styled.div<{background: string, second: string, isDesktop: boolean}>`
+const Container = styled.div<{background: string, second: string}>`
     display: flex;
     position: relative;
     justify-content: space-between;
     align-items: center;
-    padding: ${props => props.isDesktop ? '8px 20px' : '6px 20px'};
+    padding: 8px 20px;
     background-color: ${props => props.background};
     cursor: pointer;
     
     &:hover {
         background-color: ${props => props.second};
+    }
+
+    @media (max-width: 768px) {
+        padding: 6px 20px;
     }
 `
 
@@ -74,7 +77,6 @@ const DropdownItem: FC<selectItemProps> = ({
         values,
         secondColor,
         backgroundColor,
-        isDesktop,
         isMultiply
 }) => {
     function onClick() {
@@ -101,7 +103,6 @@ const DropdownItem: FC<selectItemProps> = ({
             background={backgroundColor}
             second={secondColor}
             onClick={onClick}
-            isDesktop={isDesktop}
         >
             <StyledSpan>{item.label}</StyledSpan>
             <StyledInput

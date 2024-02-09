@@ -3,35 +3,54 @@ import {useAppSelector} from 'hooks/redux';
 import styled from 'styled-components';
 import {monthToNumbers} from 'utils/consts/monthToNumbers';
 
-const Container = styled.div<{isDesktop: boolean}>`
+const Container = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: ${props => props.isDesktop ? '80px' : '40px'};
+    margin-top: 80px;
+
+    @media (max-width: 768px) {
+        margin-top: 40px;
+    }
 `
 
-const MainInfoHeading = styled.h2<{isDesktop: boolean}>`
-    font-size: ${props => props.isDesktop ? '32px' : '16px'};
+const MainInfoHeading = styled.h2`
+    font-size: 32px;
     font-weight: 600;
     margin-block-start: 0;
-    margin-block-end: ${props => props.isDesktop ? '12px' : '4px'};
+    margin-block-end: 12px;
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+        margin-block-end: 4px;
+    }
 `
 
-const Title = styled.span<{isDesktop: boolean}>`
+const Title = styled.span`
     display: inline-block;
-    width: ${props => props.isDesktop ? '292px' : '161px'};
-    font-size: ${props => props.isDesktop ? '24px' : '14px'};
-    margin-top: ${props => props.isDesktop ? '24px' : '12px'};
+    width: 292px;
+    font-size: 24px;
+    margin-top: 24px;
     font-weight: 500;
+
+    @media (max-width: 768px) {
+        width: 161px;
+        font-size: 14px;
+        margin-top: 12px;
+    }
 `
 
-const Info = styled.span<{isDesktop: boolean}>`
+const Info = styled.span`
     display: inline-block;
-    font-size: ${props => props.isDesktop ? '24px' : '14px'};
-    margin-top: ${props => props.isDesktop ? '24px' : '12px'};
+    font-size: 24px;
+    margin-top: 24px;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+        margin-top: 12px;
+    }
 `
 
 const MainInfo = () => {
-    const {isDesktop} = useAppSelector(state => state.windowSizeReducer)
     const {employee} = useAppSelector(state => state.employeeByIdReducer);
 
     let birthdate = '',
@@ -43,16 +62,16 @@ const MainInfo = () => {
     if (employ?.length) dateOfEmployment = employ[0] + '.' + monthToNumbers.get(employ[1]) + '.' + employ[2]
 
     return (
-        <Container isDesktop={isDesktop}>
-            <MainInfoHeading isDesktop={isDesktop}>Основная информация</MainInfoHeading>
+        <Container>
+            <MainInfoHeading>Основная информация</MainInfoHeading>
             <div>
-                <Title isDesktop={isDesktop}>Контактный телефон:</Title><Info isDesktop={isDesktop}>{employee.phone}</Info>
+                <Title>Контактный телефон:</Title><Info>{employee.phone}</Info>
             </div>
             <div>
-                <Title isDesktop={isDesktop}>Дата рождения:</Title><Info isDesktop={isDesktop}>{birthdate}</Info>
+                <Title>Дата рождения:</Title><Info>{birthdate}</Info>
             </div>
             <div>
-                <Title isDesktop={isDesktop}>Дата устройства:</Title><Info isDesktop={isDesktop}>{dateOfEmployment}</Info>
+                <Title>Дата устройства:</Title><Info>{dateOfEmployment}</Info>
             </div>
         </Container>
     );

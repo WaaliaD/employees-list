@@ -2,16 +2,23 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 import {useAppSelector} from 'hooks/redux';
 
-const StyledSkills = styled.div<{second: string, isDesktop: boolean}>`
-    min-width: ${props => props.isDesktop ? '90px' : '70px'};
-    height: ${props => props.isDesktop ? '39px' : '34px'};
+const StyledSkills = styled.div<{second: string}>`
+    min-width: 90px;
+    height: 39px;
     background-color: ${props => props.second};
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: ${props => props.isDesktop ? '16px' : '8px'};
-    font-size: ${props => props.isDesktop ? '16px' : '12px'};
+    margin-right: 16px;
+    font-size: 16px;
+
+    @media (max-width: 768px) {
+        min-width: 70px;
+        height: 34px;
+        margin-right: 8px;
+        font-size: 12px;
+    }
 `
 
 interface SkillsProps {
@@ -19,11 +26,10 @@ interface SkillsProps {
 }
 
 const Skills: FC<SkillsProps> = ({children}) => {
-    const {second} = useAppSelector(state => state.themeReducer)
-    const {isDesktop} = useAppSelector(state => state.windowSizeReducer)
+    const {second} = useAppSelector(state => state.themeReducer);
 
     return (
-        <StyledSkills second={second} isDesktop={isDesktop}>
+        <StyledSkills second={second}>
             {children}
         </StyledSkills>
     );

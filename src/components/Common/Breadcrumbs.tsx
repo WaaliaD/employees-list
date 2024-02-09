@@ -11,24 +11,38 @@ const StyledBreadcrumbs = styled.div`
     padding: 0 24px;
 `
 
-const BreadcrumbsContent = styled.div<{ isDesktop: boolean }>`
+const BreadcrumbsContent = styled.div`
     display: flex;
     align-items: center;
-    height: ${props => props.isDesktop ? '77px' : '44px'};
+    height: 77px;
     width: 1560px;
     color: #B0B0B0;
     text-overflow: ellipsis;
+
+    @media (max-width: 768px) {
+        height: 44px;
+    }
 `
 
-const StyledSpan = styled.span<{ isDesktop: boolean }>`
+const StyledSpan = styled.span`
     cursor: pointer;
-    font-size: ${props => props.isDesktop ? '18px' : '12px'};
+    font-size: 18px;
+
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
 `
 
-const Arrow = styled.img<{ isDesktop: boolean }>`
-    margin: ${props => props.isDesktop ? '0 20.33px' : '0 15.25px'};
-    height: ${props => props.isDesktop ? '12.67px' : '9.5px'};
-    width: ${props => props.isDesktop ? '7.33px' : '5.5px'};
+const Arrow = styled.img`
+    margin: 0 20.33px;
+    height: 12.67px;
+    width: 7.33px;
+
+    @media (max-width: 768px) {
+        margin: 0 15.25px;
+        height: 9.5px;
+        width: 5.5px;
+    }
 `
 
 const Breadcrumbs = () => {
@@ -54,11 +68,8 @@ const Breadcrumbs = () => {
 
     return (
         <StyledBreadcrumbs>
-            <BreadcrumbsContent isDesktop={isDesktop}>
-                <StyledSpan
-                    isDesktop={isDesktop}
-                    onClick={goToMain}
-                >
+            <BreadcrumbsContent>
+                <StyledSpan onClick={goToMain}>
                     Главная
                 </StyledSpan>
                 {params
@@ -67,11 +78,8 @@ const Breadcrumbs = () => {
                         if (urlPathnameToBreadcrumbs.has(item)) {
                             return (
                                 <>
-                                    <Arrow key={item} isDesktop={isDesktop} src={arrow} alt={'>'}/>
-                                    <StyledSpan
-                                        isDesktop={isDesktop}
-                                        onClick={() => goToThePageByName(item)}
-                                    >
+                                    <Arrow key={item} src={arrow} alt={'>'}/>
+                                    <StyledSpan onClick={() => goToThePageByName(item)}>
                                         {isDesktop
                                             ? urlPathnameToBreadcrumbs.get(item)?.[0]
                                             : urlPathnameToBreadcrumbs.get(item)?.[1]
@@ -82,11 +90,8 @@ const Breadcrumbs = () => {
                         }
                         return (
                             <>
-                                <Arrow key={item} isDesktop={isDesktop} src={arrow} alt={'>'}/>
-                                <StyledSpan
-                                    isDesktop={isDesktop}
-                                    onClick={() => goToEmployeePageById(item)}
-                                >
+                                <Arrow key={item} src={arrow} alt={'>'}/>
+                                <StyledSpan onClick={() => goToEmployeePageById(item)}>
                                     {isDesktop
                                         ? employee.name
                                         : employee.name &&

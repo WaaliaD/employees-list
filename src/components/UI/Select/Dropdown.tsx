@@ -6,22 +6,26 @@ interface dropdownProps {
     isOpen: boolean;
     children: ReactNode[];
     backgroundColor: string;
-    isDesktop: boolean;
 }
 
-const StyledDropdown = styled.div<{ isOpen: boolean, top: number, right: number, background: string, isDesktop: boolean}>`
+const StyledDropdown = styled.div<{ isOpen: boolean, top: number, right: number, background: string}>`
     display: ${props => props.isOpen ? 'flex' : 'none'};
     flex-direction: column;
     position: absolute;
     padding: 12px 0;
     border-top: 1px solid #155DA4;
     width: max-content;
-    top: ${props => props.isDesktop ? `${props.top + 31}px` : `${props.top + 23}px`};
-    right: ${props => props.isDesktop ? `${props.right - 16}px` : 'auto'};
+    top: ${props => props.top + 31}px;
+    right: ${props => props.right - 16}px;
     background-color: ${props => props.background};
+    
+    @media (max-width: 768px) {
+        top: ${props => props.top + 23}px;
+        right: auto;
+    }
 `
 
-const Dropdown: FC<dropdownProps> = ({children, isOpen, title, backgroundColor, isDesktop}) => {
+const Dropdown: FC<dropdownProps> = ({children, isOpen, title, backgroundColor}) => {
     const [posTop, setPosTop] = useState(0);
     const [posRight, setPosRight] = useState(0);
 
@@ -39,7 +43,6 @@ const Dropdown: FC<dropdownProps> = ({children, isOpen, title, backgroundColor, 
 
     return (
         <StyledDropdown
-            isDesktop={isDesktop}
             isOpen={isOpen}
             top={posTop}
             right={posRight}
