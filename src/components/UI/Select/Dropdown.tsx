@@ -27,7 +27,7 @@ const Dropdown: FC<dropdownProps> = ({children, isOpen, title, backgroundColor, 
 
     const resizeHandler = () => {
         const rect = title?.current?.getBoundingClientRect();
-        setPosTop(rect ? rect?.top : 0);
+        setPosTop(rect ? window.scrollY + rect?.top : 0);
         setPosRight(rect ? window.innerWidth - rect?.right : 0);
     }
 
