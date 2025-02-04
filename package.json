@@ -1,6 +1,6 @@
 {
-  "homepage": "https://waaliad.github.io/test-task-66bit-v2",
-  "name": "testtask66bitv2",
+  "homepage": "https://waaliad.github.io/employees-list",
+  "name": "employees-list",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -39,7 +39,7 @@ export default function App() {
             bc={background}
             tc={textColor}
         >
-            <BrowserRouter basename='/test-task-66bit-v2'>
+            <BrowserRouter basename='/employees-list'>
                 <Header/>
                 <Breadcrumbs/>
                 <AppRouter/>
